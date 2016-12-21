@@ -10,6 +10,7 @@
 
   <body>
     <main class="container">
+      <%= render partial: 'shared/navbar' %>
       <div class="row">
         <% if content_for?(:sidenav) %>
           <%= render partial: 'shared/chef_nav' %>
@@ -21,6 +22,8 @@
           <%= yield %>
         </div>
       </div>
+      <%= render partial: 'shared/flash' %>
+      <%= yield %>
     </main>
   </body>
 </html>
