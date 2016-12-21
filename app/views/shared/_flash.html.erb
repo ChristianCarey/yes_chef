@@ -1,7 +1,7 @@
 <div class="row" id="flash-box">
   <% flash.each do |type, msg| %>
     <div class="alert alert-block alert-<%= type %>">
-      <% if msg.is_a? Array %>
+      <% if msg.is_a?(Array) %>
         <% msg.each do |m| %>
           <p><%= m %></p>
         <% end %>
