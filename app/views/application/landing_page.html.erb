@@ -1,0 +1,15 @@
+<div class="row">
+  <h2 class='text-center'>this is the landing page</h2>
+  
+  <div class="col-md-6">
+    <div class="chef_signup"> 
+    <%= link_to 'sign up as chef', new_user_registration_path(role: 'chef') %>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="client_signup"> 
+      <%= link_to 'sign up client', new_user_registration_path(role: 'client') %>
+    </div>
+  </div>
+</div>
