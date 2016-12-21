@@ -1,0 +1,15 @@
+<% present_collection @menus do |menus_presenter| %>
+  <h1>Your menus</h1>
+    <h2>Current:</h2>
+  <ul>
+    <%= menus_presenter.current_menus %>
+  </ul>
+  <h2>Past:</h2>
+  <ul>
+    <%= menus_presenter.past_menus %>
+  </ul>
+  <h2>Future:</h2>
+  <ul>
+    <%= menus_presenter.future_menus%>
+  </ul>
+<% end %>
