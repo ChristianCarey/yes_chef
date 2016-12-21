@@ -16,14 +16,14 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
+    @menu.menu_selections.build
   end
 
   def create
-    @menu = Menu.new(whitelist)
-    @menu.menu_item_ids = params[:menu_item_ids]
+    @menu = current_user.menus.build(whitelist)
     if @menu.save
       flash[:success] = "Menu and items saved."
-      @menu
+      redirect_to @menu
     else
       flash.now[:danger] = "Could not save menu."
       render :new
@@ -48,7 +48,9 @@ class MenusController < ApplicationController
     end
 
     def whitelist
-      params.require(:menu).permit(:start_date, :end_date)
+      params.require(:menu).permit(:start_date,
+                                   :end_date,
+                                   menu_item_ids: [])
     end
 
 end
