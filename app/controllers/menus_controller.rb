@@ -1,4 +1,4 @@
-class MenuController < ApplicationController
+class MenusController < ApplicationController
 
   before_action :find_menu, except: [:index, :new, :create]
 
