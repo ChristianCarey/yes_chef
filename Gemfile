@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails_12factor'
 gem 'devise', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'faker', '~> 1.6', '>= 1.6.6'
+gem 'faker'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'simple_form'
 
