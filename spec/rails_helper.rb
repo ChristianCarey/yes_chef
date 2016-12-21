@@ -5,8 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'factory_girl_rails'
+require 'capybara/rails'
 
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -18,6 +20,12 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  config.include Rails.application.routes.url_helpers
+  config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
+
+  config.include FactoryGirl::Syntax::Methods
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

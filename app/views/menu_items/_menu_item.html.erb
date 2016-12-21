@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= item.name %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= item.description %></p>
+      </div>
+      <% if current_chef? %>
+        <div class="panel-footer links">
+          <p><%= link_to "Edit", edit_menu_item_path(item), class: "link" %> <%= link_to "Destroy", menu_item_path(item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
