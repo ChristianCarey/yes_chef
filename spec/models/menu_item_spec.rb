@@ -1,5 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe MenuItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe MenuItem, type: :model do
+  let(:menu_item) { build(:menu_item) }
+
+  describe 'validation' do
+
+    it 'should validate name' do
+      
+    end
+
+    it 'should validate description'
+
+    it 'should have a user'
+
+    it 'should validate unique names in the scope of its user'
+
+  end
 end

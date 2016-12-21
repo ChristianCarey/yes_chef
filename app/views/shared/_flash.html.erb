@@ -1,9 +1,13 @@
 <div class="row" id="flash-box">
   <% flash.each do |type, msg| %>
-  <div class="alert alert-block alert-<%= type %>">
-  <% msg.each do |m| %>
-  <p><%= m %></p>
-  <% end %>
-  </div>
+    <div class="alert alert-block alert-<%= type %>">
+      <% if msg.is_a? Array %>
+        <% msg.each do |m| %>
+          <p><%= m %></p>
+        <% end %>
+      <% else %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
   <% end %>
 </div>
