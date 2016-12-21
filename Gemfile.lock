@@ -237,6 +237,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.3.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -304,6 +307,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5, >= 3.5.2)
   sass-rails (~> 5.0)
   shoulda-matchers
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
