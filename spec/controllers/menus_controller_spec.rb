@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MenusController, type: :controller do
   # include Devise::Test::ControllerHelpers
   
-  let(:user){ create(:user) }
+  let(:user){ create(:user, :chef) }
 
   describe "POST #create" do 
     before do 
