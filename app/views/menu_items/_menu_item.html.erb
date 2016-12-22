@@ -2,19 +2,19 @@
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= item.name %></h3>
+        <h3 class="panel-title"><%= menu_item.name %></h3>
       </div>
       <div class="panel-body">
-        <p><%= item.description %></p>
+        <p><%= menu_item.description %></p>
         <ul>
-          <% item.ingredients.each do |ingredient| %>
+          <% menu_item.ingredients.each do |ingredient| %>
             <li><%= ingredient.name %></li>
           <% end %>
         </ul>
       </div>
-      <% if current_chef?(item) %>
+      <% if current_chef?(menu_item) %>
         <div class="panel-footer links">
-          <p><%= link_to "Edit", edit_menu_item_path(item), class: "link" %> <%= link_to "Destroy", menu_item_path(item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
+          <p><%= link_to "Edit", edit_menu_item_path(menu_item), class: "link" %> <%= link_to "Destroy", menu_item_path(menu_item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
         </div>
       <% end %>
     </div>

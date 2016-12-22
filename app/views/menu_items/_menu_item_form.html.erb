@@ -1,8 +1,8 @@
-<%= simple_form_for item do |f| %>
+<%= simple_form_for menu_item do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.association :ingredients %>
-  <%= f.simple_fields_for :ingredients, item.ingredients.build do |fi| %>
+  <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
     <%#= fi.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
     <%= fi.input :name %>
   <% end %>
