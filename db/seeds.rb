@@ -30,9 +30,12 @@ puts "Creating menu items..."
 end
 
 puts "Creating menus..."
-3.times do
-  User.first.menus.create(order_deadline: Faker::Time.between(2.days.ago, Date.today),
-                          completion_date:   Faker::Time.forward(5))
+
+User.where(role: "chef").each do |chef|
+  3.times do |n|
+    chef.menus.create(order_deadline: Faker::Time.between(Date.today, 5.days.from_now),
+                      completion_date: (6 + n).days.from_now)
+  end
 end
 
 puts "Creating menu selections and placing orders..."
@@ -54,7 +57,7 @@ end
 
 puts "Adding items to orders..."
 Order.all.each do |order|
-  (1..order.menu.menu_items.size).times do 
+  rand(1..order.menu.menu_items.size).times do 
     order.menu_item_orders.create(menu_item: order.menu.menu_items.sample,
                                   quantity: rand(1..3))
   end
