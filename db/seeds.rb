@@ -15,8 +15,8 @@ end
 
 puts "Creating menus..."
 3.times do 
-  User.first.menus.create(start_date: Faker::Time.between(2.days.ago, Date.today),
-                          end_date:   Faker::Time.forward(5))
+  User.first.menus.create(order_deadline: Faker::Time.between(2.days.ago, Date.today),
+                          completion_date:   Faker::Time.forward(5))
 end
 
 puts "Creating menu selections..."

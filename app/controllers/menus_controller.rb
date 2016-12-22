@@ -5,7 +5,7 @@ class MenusController < ApplicationController
 
   def index
     @menus = current_user.menus.all
-    @menus_by_end_date = @menus.group_by(&:end_date)
+    @menus_by_completion_date = @menus.group_by(&:completion_date)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     # list of all current/previous menus
       # past
@@ -63,8 +63,8 @@ class MenusController < ApplicationController
     end
 
     def whitelist
-      params.require(:menu).permit(:start_date,
-                                   :end_date,
+      params.require(:menu).permit(:order_deadline,
+                                   :completion_date,
                                    menu_item_ids: [])
     end
 

@@ -7,9 +7,9 @@
   </h2>
   <%= calendar @date do |date| %>
     <%= date.day %>
-    <% if @menus_by_end_date[date] %>
+    <% if @menus_by_completion_date[date] %>
       <ul>
-        <% @menus_by_end_date[date].each do |menu| %>
+        <% @menus_by_completion_date[date].each do |menu| %>
           <li><%= link_to "View menu", menu %></li>
         <% end %>
       </ul>
