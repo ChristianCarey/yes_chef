@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
     @order = current_user.placed_orders.build(whitelist)
     @order.chef_id = @menu.chef.id
     if @order.save
-      flash[:success] = 'Order place!'
+      flash[:success] = 'Order placed!'
       # TODO make show
       redirect_to @menu
     else
@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   private
 
     def whitelist
-      params.require(:order).permit( {menu_item_order_attributes: [:quantity, :sale_price_cents, :menu_item_ids ]} )
+      params.require(:order).permit( {menu_item_orders_attributes: [:quantity, :sale_price_cents, menu_item_ids: [] ]} )
     end
 
     def find_order
