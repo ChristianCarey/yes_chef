@@ -1,0 +1,41 @@
+<h1>Order Details</h1>
+
+<p><strong>Deadline to place or alter order:</strong>
+<%= @order.menu.order_deadline %>
+</p>
+
+<h3>What you'll be recieving:</h3>
+<table class='table table-striped table-bordered'>
+  <th>
+    <td>Item</td>
+    <td>Quantity</td>
+    <td>Price</td>
+  </th>
+<% @order.menu_item_orders.each do |mio| %>
+
+    <tr>
+    <td></td>
+      <td>
+        <strong><%= mio.menu_item.name %></strong>
+        <br>
+        <%= mio.menu_item.description %>
+      </td>
+      <td>
+        <%= mio.quantity %>
+      </td>
+      <td>
+        <%= mio.sale_price_cents * mio.quantity %>
+    </td>
+    </tr>
+<% end %>
+    <tr>
+      <td>
+        <strong>Total price:</strong>
+      </td>
+      <td></td>
+      <td></td>
+      <td>
+        <%= @total_price %>
+      </td>
+    </tr>
+</table>

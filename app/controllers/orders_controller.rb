@@ -10,6 +10,9 @@ class OrdersController < ApplicationController
   def show
     # placed order
     # changing button: placed vs edit
+    @total_price = @order.menu_item_orders.inject(0) do |total, mio|
+      total += mio.sale_price_cents
+    end
   end
 
   def new
@@ -22,7 +25,7 @@ class OrdersController < ApplicationController
     if @order.save
       flash[:success] = 'Order placed!'
       # TODO make show
-      redirect_to @menu
+      redirect_to menu_order_path @menu, @order
     else
       nil.ok
     end
