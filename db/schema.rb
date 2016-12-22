@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221184336) do
+ActiveRecord::Schema.define(version: 20161221225400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_ingredients_on_user_id_and_name", unique: true, using: :btree
+    t.index ["user_id"], name: "index_ingredients_on_user_id", using: :btree
+  end
+
+  create_table "ingredients_menu_items", force: :cascade do |t|
+    t.integer  "ingredient_id"
+    t.integer  "menu_item_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["ingredient_id"], name: "index_ingredients_menu_items_on_ingredient_id", using: :btree
+    t.index ["menu_item_id"], name: "index_ingredients_menu_items_on_menu_item_id", using: :btree
+  end
 
   create_table "menu_items", force: :cascade do |t|
     t.string   "name",        null: false
@@ -62,6 +80,9 @@ ActiveRecord::Schema.define(version: 20161221184336) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ingredients", "users"
+  add_foreign_key "ingredients_menu_items", "ingredients"
+  add_foreign_key "ingredients_menu_items", "menu_items"
   add_foreign_key "menu_selections", "menu_items"
   add_foreign_key "menu_selections", "menus"
 end

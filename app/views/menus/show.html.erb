@@ -1,6 +1,8 @@
+
 <% present @menu do |menu_presenter| %>
   <h2><%= menu_presenter.date_range %></h2>
   <ul>
     <%= render @menu.menu_items %>
   </ul>
 <% end %>
+
