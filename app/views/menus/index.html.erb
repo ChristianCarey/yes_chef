@@ -8,11 +8,22 @@
   <%= calendar @date do |date| %>
     <%= date.day %>
     <% if @menus_by_completion_date[date] %>
+      <% @eventless = false %>
       <ul>
         <% @menus_by_completion_date[date].each do |menu| %>
           <li><%= link_to "View menu", menu %></li>
         <% end %>
       </ul>
+    <% else %>
+      <%= link_to "", new_menu_path(selected_date: date), class: "full-size eventless", id: date %>
+      <% @eventless = true %>
     <% end %>
   <% end %>
 </div>
+
+<script>
+  $('.eventless').parent().on('click touchstart', function(){
+    var current_id = $(this).children('a.eventless')[0].id
+    window.location = "/menus/new?selected_date=" + current_id
+  })
+</script>
