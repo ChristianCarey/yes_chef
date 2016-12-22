@@ -1,15 +1,15 @@
 class MenuPresenter < BasePresenter
 
-  def start_date
-    menu.start_date.strftime("%A, %b %e")
+  def order_deadline
+    menu.order_deadline.strftime("%A, %b %e")
   end
 
-  def end_date
-    menu.end_date.strftime("%A, %b %e")
+  def completion_date
+    menu.completion_date.strftime("%A, %b %e")
   end
 
   def date_range
-    "#{start_date} to #{end_date}"
+    "#{order_deadline} to #{completion_date}"
   end
 
   def menu_items

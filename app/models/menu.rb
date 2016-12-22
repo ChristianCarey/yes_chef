@@ -6,7 +6,7 @@ class Menu < ApplicationRecord
 
   accepts_nested_attributes_for :menu_selections
 
-  validates :start_date, presence: true
+  validates :order_deadline, presence: true
 
   def self.add_menu_items(item_ids)
 
