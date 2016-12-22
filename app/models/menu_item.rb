@@ -8,4 +8,6 @@ class MenuItem < ApplicationRecord
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name, scope: [:user_id]
+
+  accepts_nested_attributes_for :ingredients, reject_if: :all_blank
 end

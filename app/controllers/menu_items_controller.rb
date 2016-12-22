@@ -18,13 +18,14 @@ class MenuItemsController < ApplicationController
   end
 
   def create
+    add_user_id_to_ingredients
     @item = current_user.menu_items.build(menu_item_params)
     if @item.save
       flash[:success] = "New Menu Item Created!"
       redirect_to @item
     else
       flash.now[:danger] = ["Something went wrong.."]
-      @item..errors.full_messages.each do |error|
+      @item.errors.full_messages.each do |error|
         flash.now[:danger] << error
       end
       render :new
@@ -35,12 +36,13 @@ class MenuItemsController < ApplicationController
   end
 
   def update
+    add_user_id_to_ingredients
     if @item.update(menu_item_params)
       flash[:success] = "Menu Item: #{@item.name} updated!"
       redirect_to @item
     else
       flash.now[:danger] = ["Something went wrong.."]
-      @item..errors.full_messages.each do |error|
+      @item.errors.full_messages.each do |error|
         flash.now[:danger] << error
       end
       render :edit
@@ -55,7 +57,8 @@ class MenuItemsController < ApplicationController
 
   private
     def menu_item_params
-      params.require(:menu_item).permit(:name, :description)
+      params.require(:menu_item).permit(:name, :description,
+                  { ingredients_attributes: [:user_id, :name] }, ingredient_ids: [])
     end
 
     def find_item
@@ -68,9 +71,16 @@ class MenuItemsController < ApplicationController
       end
     end
 
-    def current_chef?
-      current_user == @item.chef
+    def current_chef?(item)
+      current_user == item.chef
     end
     helper_method :current_chef?
+
+    def add_user_id_to_ingredients
+      if params[:menu_item][:ingredients_attributes]["0"] && 
+         !params[:menu_item][:ingredients_attributes]["0"][:name].empty?
+        params[:menu_item][:ingredients_attributes]["0"][:user_id] = current_user.id
+      end
+    end
 
 end
