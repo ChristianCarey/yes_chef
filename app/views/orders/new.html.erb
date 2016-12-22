@@ -1,6 +1,6 @@
 <%= simple_form_for [@menu, @order] do |f| %>
   <% @menu.menu_items.each do |menu_item| %>
-    <%= f.simple_fields_for :menu_item_orders, @order.menu_item_orders.build do |m| %>
+    <%= f.simple_fields_for :menu_item_orders, @mio do |m| %>
         <p>
         <%= menu_item.name %>
         <%= m.input :menu_item_id, as: :hidden, input_html: { value: menu_item.id } %>
