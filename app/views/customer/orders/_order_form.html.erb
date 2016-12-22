@@ -1,4 +1,4 @@
-<%= simple_form_for [order.menu, order] do |f| %>
+<%= simple_form_for [:customer, order.menu, order] do |f| %>
   <% order.menu.menu_items.each do |menu_item| %>
     <%= f.simple_fields_for :order_items, oi do |m| %>
         <p>

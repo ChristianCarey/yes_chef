@@ -1,4 +1,4 @@
-class MenusController < ApplicationController
+class Chef::MenusController < ApplicationController
 
   before_action :find_menu, except: [:index, :new, :create]
   before_action :require_current_chef, except: [:new, :create, :index]
@@ -54,7 +54,7 @@ class MenusController < ApplicationController
   def destroy
     if @menu.destroy
       flash[:succes] = "Menu deleted."
-      redirect_to menus_path
+      redirect_to chef_menus_path
     else
       flash.now[:danger] = "Unable to delete menu."
       render :show
