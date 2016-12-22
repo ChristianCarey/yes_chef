@@ -9,11 +9,11 @@
     <%= date.day %>
     <% if @menus_by_completion_date[date] %>
       <% @eventless = false %>
-      <ul>
         <% @menus_by_completion_date[date].each do |menu| %>
-          <li><%= link_to "View menu", menu %></li>
+          <p>
+            <%= link_to "View Menu", menu %> <span class="badge"><%= menu.orders.size %></span>
+          </p>
         <% end %>
-      </ul>
     <% else %>
       <%= link_to "", new_menu_path(selected_date: date), class: "full-size eventless", id: date %>
       <% @eventless = true %>
