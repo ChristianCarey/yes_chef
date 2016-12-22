@@ -59,7 +59,8 @@ class MenuItemsController < ApplicationController
   private
     def menu_item_params
       params.require(:menu_item).permit(:name, :description,
-                  { ingredients_attributes: [:user_id, :name] }, ingredient_ids: [])
+                  { ingredients_attributes: [:user_id, :name] },
+                  { categories_attributes: [:name] }, category_ids:[], ingredient_ids: [])
     end
 
     def find_item

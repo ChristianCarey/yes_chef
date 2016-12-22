@@ -11,6 +11,11 @@
             <li><%= ingredient.name %></li>
           <% end %>
         </ul>
+        <p>
+          <% menu_item.categories.each do |category| %>
+            <%= category.name %>
+          <% end %>
+        </p>
       </div>
       <% if current_chef?(menu_item) %>
         <div class="panel-footer links">

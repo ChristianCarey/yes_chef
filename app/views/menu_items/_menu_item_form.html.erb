@@ -1,9 +1,14 @@
 <%= simple_form_for menu_item do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <h4> Ingredients </h4>
   <%= f.association :ingredients %>
   <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
-    <%#= fi.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= fi.input :name %>
+  <% end %>
+  <h4> Categories </h4>
+  <%= f.association :categories %>
+  <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>
     <%= fi.input :name %>
   <% end %>
   <%= f.submit %>
