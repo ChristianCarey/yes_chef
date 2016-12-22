@@ -15,32 +15,33 @@ class OrdersController < ApplicationController
 
   def new
     @order = @menu.orders.build
-    @mio = @order.order_items.build
+    @oi = @order.order_items.build
   end
 
   def create
     @order = @menu.orders.build(whitelist)
     if @order.save
       flash[:success] = 'Order placed!'
-      # TODO make show
-      redirect_to @menu
+      redirect_to @order
     else
-      nil.ok
+      flash.now[:danger] = 'Unable to place order!'
+      render :new
     end
   end
 
-  # def edit
-  #
-  # end
-  #
-  # def update
-  #   # orders that are sitll active (before certain date)
-  # end
-  #
-  # def destroy
-  #   # orders that are still active only
-  #   # add a fulfilled_date col to Order?
-  # end
+  def edit
+    @oi = @order.order_items
+  end
+
+  def update
+
+    # orders that are sitll active (before certain date)
+  end
+
+  def destroy
+    # orders that are still active only
+    # add a fulfilled_date col to Order?
+  end
 
   private
 

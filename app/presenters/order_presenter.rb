@@ -1,0 +1,3 @@
+class OrderPresenter < BasePresenter
+
+end

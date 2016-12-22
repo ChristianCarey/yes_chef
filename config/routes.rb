@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :customer do
     resources :menus, only: [:index, :show] do
-      resources :orders
+      resources :orders, except: [:index, :show]
     end
   end
 
@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   end
 
   resources   :menu_items
+
+  resources   :orders, only: [:index, :show]
+
 
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root
