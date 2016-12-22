@@ -18,7 +18,11 @@ class MenusController < ApplicationController
   end
 
   def new
-    @menu = Menu.new
+    date = params[:selected_date]
+    unless date && Date.parse(date) > Date.today
+      date = 1.week.from_now
+    end
+    @menu = Menu.new(completion_date: date )
     @menu.menu_selections.build
   end
 

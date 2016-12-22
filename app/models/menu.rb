@@ -6,10 +6,29 @@ class Menu < ApplicationRecord
 
   accepts_nested_attributes_for :menu_selections
 
-  validates :order_deadline, presence: true
+  validates_presence_of :order_deadline, :completion_date
 
-  def self.add_menu_items(item_ids)
+  validate :correct_dates
 
-  end
+  private
+    def correct_dates
+      if order_deadline && completion_date
+        correct_deadline
+        in_the_past(completion_date, :completion_date)
+        in_the_past(order_deadline, :order_deadline)
+      end
+    end
+
+    def correct_deadline
+      if order_deadline > completion_date
+        errors.add(:order_deadline, :invalid, message: "Order Deadline cannot be after completion_date")
+      end
+    end
+
+    def in_the_past(date, arg)
+      if date < Date.today
+        errors.add(arg, :invalid, message: "#{arg.to_s.humanize} cannot be before today")
+      end
+    end
 
 end
