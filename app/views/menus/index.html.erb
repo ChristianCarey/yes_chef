@@ -1,15 +1,18 @@
-<% present_collection @menus do |menus_presenter| %>
-  <h1>Your menus</h1>
-    <h2>Current:</h2>
-  <ul>
-    <%= menus_presenter.current_menus %>
-  </ul>
-  <h2>Past:</h2>
-  <ul>
-    <%= menus_presenter.past_menus %>
-  </ul>
-  <h2>Future:</h2>
-  <ul>
-    <%= menus_presenter.future_menus%>
-  </ul>
-<% end %>
+<h1>Menus</h1>
+<div id="menus">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y")%>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @menus_by_end_date[date] %>
+      <ul>
+        <% @menus_by_end_date[date].each do |menu| %>
+          <li><%= link_to "View menu", menu %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

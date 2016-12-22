@@ -5,6 +5,8 @@ class MenusController < ApplicationController
 
   def index
     @menus = current_user.menus.all
+    @menus_by_end_date = @menus.group_by(&:end_date)
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
     # list of all current/previous menus
       # past
       # current
