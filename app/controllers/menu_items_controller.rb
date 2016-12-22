@@ -1,4 +1,5 @@
 class MenuItemsController < ApplicationController
+
   before_action :find_item, except: [:index, :new, :create]
   before_action :current_chef, except: [:index, :show, :new, :create]
 
