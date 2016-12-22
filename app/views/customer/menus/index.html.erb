@@ -11,14 +11,14 @@
       <% @eventless = false %>
         <% @completion_dates[date].each do |menu| %>
           <p>
-            <%= link_to "View Menu", menu %></span>
+            <%= link_to "View Menu", new_customer_menu_order_path(menu) %></span>
           </p>
           <p>Order Deadline: <%= menu.order_deadline.strftime("%B %Y") %></p>
         <% end %>
     <% elsif @order_deadlines[date] %>
       <% @order_deadlines[date].each do |menu| %>
         <p>
-          Order Deadline for:<%= link_to menu.completion_date.strftime("%B %Y"), menu_orders(menu) %></span>
+          Order Deadline for:<%= link_to menu.completion_date.strftime("%B %Y"), new_customer_menu_order_path(menu) %></span>
         </p>
       <% end %>
     <% end %>
