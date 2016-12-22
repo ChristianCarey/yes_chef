@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  resources  :users
-  resources :menu_items
-  resources  :menus
+  devise_for  :users, :controllers => { registrations: 'registrations' }
+  resources   :users
+  resources   :menu_items
+  resources   :menus
+  resources    :orders
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root
   end
