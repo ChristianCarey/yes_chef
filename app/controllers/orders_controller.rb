@@ -28,24 +28,24 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-    @oi = @order.order_items
-  end
+  # def edit
+  #   @oi = @order.order_items
+  # end
 
-  def update
+  # def update
+  #
+  #   # orders that are sitll active (before order_deadline)
+  # end
 
-    # orders that are sitll active (before certain date)
-  end
-
-  def destroy
-    # orders that are still active only
-    # add a fulfilled_date col to Order?
-  end
+  # def destroy
+  #   # orders that are still active only
+  #   # add a fulfilled_date col to Order?
+  # end
 
   private
 
     def whitelist
-      params.require(:order).permit( {order_items_attributes: [:quantity, :sale_price_cents, :menu_item_id ]} ).merge(customer: current_user)
+      params.require(:order).permit(:id, :menu_id, {order_items_attributes: [:id, :quantity, :menu_item_id ]} ).merge(customer: current_user)
     end
 
     def find_order
