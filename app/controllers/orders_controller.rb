@@ -12,13 +12,22 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @menu = Menu.find(params[:menu_id])
     @order = Order.new
+    @mio = MenuItemOrder.new
   end
 
   def create
-    @order = Order.new()
-    @mio = MenuItemOrder.new
-    @order.save
+    @menu = Menu.find(params[:menu_id])
+    @order = current_user.placed_orders.build(whitelist)
+    @order.chef_id = @menu.chef.id
+    if @order.save
+      flash[:success] = 'Order place!'
+      # TODO make show
+      redirect_to @menu
+    else
+      nil.ok
+    end
   end
 
   def edit
@@ -37,7 +46,7 @@ class OrdersController < ApplicationController
   private
 
     def whitelist
-      params.require(:order).permit(:chef_id, menu_item_ids: [])
+      params.require(:order).permit( {menu_item_order_attributes: [:quantity, :sale_price_cents, :menu_item_ids ]} )
     end
 
     def find_order
