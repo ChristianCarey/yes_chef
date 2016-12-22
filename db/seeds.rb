@@ -48,7 +48,7 @@ Menu.all.each do |menu|
     menu.menu_items << menu_item
   end
 
-  10.times do 
+  10.times do
     chef = User.where(role: "chef").sample
     Order.create(menu: chef.menus.sample,
                  customer: chef.customers.sample)
@@ -57,8 +57,8 @@ end
 
 puts "Adding items to orders..."
 Order.all.each do |order|
-  rand(1..order.menu.menu_items.size).times do 
-    order.menu_item_orders.create(menu_item: order.menu.menu_items.sample,
+  rand(1..order.menu.menu_items.size).times do
+    order.order_items.create(menu_item: order.menu.menu_items.sample,
                                   quantity: rand(1..3))
   end
 end
