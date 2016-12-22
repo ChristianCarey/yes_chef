@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources   :menus do
     resources :orders
   end
-  resources   :orders  
 
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root

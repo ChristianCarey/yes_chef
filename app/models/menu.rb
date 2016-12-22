@@ -1,6 +1,7 @@
 class Menu < ApplicationRecord
   belongs_to :chef, class_name: 'User', foreign_key: :user_id
 
+  has_many :orders
   has_many :menu_selections, inverse_of: :menu, dependent: :destroy
   has_many :menu_items, through: :menu_selections
   has_many :orders, dependent: :destroy

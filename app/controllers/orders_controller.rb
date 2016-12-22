@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   before_action :find_order, except: [:index, :new, :create]
+  before_action :find_menu, except: [:index, :show]
 
   def index
     @orders = current_user.orders
@@ -12,15 +13,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @menu = Menu.find(params[:menu_id])
-    @order = Order.new
-    @mio = MenuItemOrder.new
+    @order = @menu.orders.build
+    @mio = @order.menu_item_orders.build
   end
 
   def create
-    @menu = Menu.find(params[:menu_id])
-    @order = current_user.placed_orders.build(whitelist)
-    @order.chef_id = @menu.chef.id
+    @order = @menu.orders.build(whitelist)
     if @order.save
       flash[:success] = 'Order placed!'
       # TODO make show
@@ -46,10 +44,14 @@ class OrdersController < ApplicationController
   private
 
     def whitelist
-      params.require(:order).permit( {menu_item_orders_attributes: [:quantity, :sale_price_cents, menu_item_ids: [] ]} )
+      params.require(:order).permit( {menu_item_orders_attributes: [:quantity, :sale_price_cents, :menu_item_id ]} ).merge(customer: current_user)
     end
 
     def find_order
-      @order = Order.find_by_id(params[:id])
+      @order = Order.find_by(id: params[:id])
+    end
+
+    def find_menu
+      @menu = Menu.find_by(id: params[:menu_id])
     end
 end

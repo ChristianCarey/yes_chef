@@ -7,7 +7,7 @@ class Order < ApplicationRecord
 
   default_scope { includes(:menu, :customer, :menu_items, :menu_item_orders) }
 
-  accepts_nested_attributes_for :menu_item_orders, reject_if: :all_blank, reject_if: proc { |attributes| attributes['quantity'].blank? }
+  accepts_nested_attributes_for :menu_item_orders, reject_if: :all_blank, reject_if: proc { |attributes| attributes['quantity'].blank? || attributes['menu_item_id'].blank?}
 
   def chef
     menu.chef
@@ -16,4 +16,5 @@ class Order < ApplicationRecord
   def total
     menu_item_orders.sum(:sale_price_cents)
   end
+
 end
