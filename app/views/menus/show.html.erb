@@ -1,6 +1,9 @@
 <% present @menu do |menu_presenter| %>
   <h2><%= menu_presenter.date_range %></h2>
   <ul>
-    <%= render @menu.menu_items %>
+    <%#= render @menu.items %>
   </ul>
+
+  <p><%= link_to "Delete", menu_path(@menu), method: :delete %></p>
+  <p><%= link_to "Edit", edit_menu_path(@menu) %></p>
 <% end %>

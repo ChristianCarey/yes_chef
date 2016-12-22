@@ -1,6 +1,7 @@
 class MenusController < ApplicationController
 
   before_action :find_menu, except: [:index, :new, :create]
+  before_action :require_current_chef, except: [:new, :create, :index]
 
   def index
     @menus = current_user.menus.all
@@ -35,11 +36,23 @@ class MenusController < ApplicationController
   end
 
   def update
-
+    if @menu.update(whitelist)
+      flash[:success] = "Menu updated."
+      redirect_to @menu
+    else
+      flash.now[:danger] = "No changes were made."
+      render :edit
+    end
   end
 
   def destroy
-
+    if @menu.destroy
+      flash[:succes] = "Menu deleted."
+      redirect_to menus_path
+    else
+      flash.now[:danger] = "Unable to delete menu."
+      render :show
+    end
   end
 
   private
@@ -53,4 +66,10 @@ class MenusController < ApplicationController
                                    menu_item_ids: [])
     end
 
+    def require_current_chef
+      unless @menu.chef == current_user
+        flash[:danger] = "Get outta my menu."
+        redirect_to current_user
+      end
+    end
 end
