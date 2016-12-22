@@ -6,6 +6,4 @@ class Order < ApplicationRecord
   has_many :menu_items, through: :menu_item_orders
 
   accepts_nested_attributes_for :menu_item_orders
-
-  validates :chef_id, :customer_id, presence: true
 end
