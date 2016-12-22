@@ -91,11 +91,11 @@ ActiveRecord::Schema.define(version: 20161222175851) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "chef_id",     null: false
+    t.integer  "menu_id",     null: false
     t.integer  "customer_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["chef_id", "customer_id"], name: "index_orders_on_chef_id_and_customer_id", using: :btree
+    t.index ["menu_id", "customer_id"], name: "index_orders_on_menu_id_and_customer_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20161222175851) do
     t.string   "role",                                null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "chef_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
