@@ -28,7 +28,6 @@ class MenusController < ApplicationController
 
   def create
     @menu = current_user.menus.build(whitelist)
-    asdf
     if @menu.save
       flash[:success] = "Menu and items saved."
       redirect_to @menu
