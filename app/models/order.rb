@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   end
 
   def total
-    order_items.sum(:sale_price_cents)
+    order_items.sum(:sale_price_cents * :quantity)
   end
 
 end
