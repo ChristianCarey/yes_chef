@@ -8,4 +8,17 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_chef?
 
+  def customers_chef?(menu_or_item)
+    current_user.chef == menu_or_item.chef
+  end
+  helper_method :customers_chef?
+
+  def chef_or_current_user?
+    @user == current_user || @user.chef == current_user
+  end
+
+  def chef?
+    current_user.role == 'chef'
+  end
+
 end

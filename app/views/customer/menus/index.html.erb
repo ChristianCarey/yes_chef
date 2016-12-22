@@ -1,0 +1,26 @@
+<h1>Menus</h1>
+<div id="menus">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y")%>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @completion_dates[date] %>
+      <% @eventless = false %>
+        <% @completion_dates[date].each do |menu| %>
+          <p>
+            <%= link_to "View Menu", menu %></span>
+          </p>
+          <p>Order Deadline: <%= menu.order_deadline.strftime("%B %Y") %></p>
+        <% end %>
+    <% elsif @order_deadlines[date] %>
+      <% @order_deadlines[date].each do |menu| %>
+        <p>
+          Order Deadline for:<%= link_to menu.completion_date.strftime("%B %Y"), menu_orders(menu) %></span>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

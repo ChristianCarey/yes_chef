@@ -2,9 +2,10 @@ class OrdersController < ApplicationController
 
   before_action :find_order, except: [:index, :new, :create]
   before_action :find_menu, except: [:index, :show]
+  before_action :chef_or_current_user?
 
   def index
-    @orders = current_user.orders
+    @orders = @user.orders
   end
 
   def show
@@ -28,18 +29,18 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-
-  end
-
-  def update
-    # orders that are sitll active (before certain date)
-  end
-
-  def destroy
-    # orders that are still active only
-    # add a fulfilled_date col to Order?
-  end
+  # def edit
+  #
+  # end
+  #
+  # def update
+  #   # orders that are sitll active (before certain date)
+  # end
+  #
+  # def destroy
+  #   # orders that are still active only
+  #   # add a fulfilled_date col to Order?
+  # end
 
   private
 

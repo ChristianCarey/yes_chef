@@ -1,0 +1,29 @@
+<h1>Menus</h1>
+<div id="menus">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y")%>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @menus_by_completion_date[date] %>
+      <% @eventless = false %>
+        <% @menus_by_completion_date[date].each do |menu| %>
+          <p>
+            <%= link_to "View Menu", chef_menu_path(menu) %> <span class="badge"><%= menu.orders.size %></span>
+          </p>
+        <% end %>
+    <% else %>
+      <%= link_to "", new_chef_menu_path(selected_date: date), class: "full-size eventless", id: date %>
+      <% @eventless = true %>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  $('.eventless').parent().on('click touchstart', function(){
+    var current_id = $(this).children('a.eventless')[0].id
+    window.location = "/chef/menus/new?selected_date=" + current_id
+  })
+</script>

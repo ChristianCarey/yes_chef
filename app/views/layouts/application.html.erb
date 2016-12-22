@@ -15,6 +15,9 @@
         <% if signed_in? && current_user.role == 'chef' %>
           <%= render partial: 'shared/chef_nav' %>
           <div class="col-sm-10">
+        <% elsif signed_in? && current_user.role == 'customer' %>
+          <%= render partial: 'shared/customer_nav' %>
+          <div class="col-sm-10">
         <% else %>
           <div class="col-xs-12">
         <% end %>
