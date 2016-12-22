@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources   :users
   resources   :menu_items
   resources   :menus do
-    resources :orders
+    resources :orders, except: [:index, :show]
   end
+
+  resources :orders, only: [:index, :show]
 
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root
