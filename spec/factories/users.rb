@@ -7,8 +7,8 @@ FactoryGirl.define do
       role 'chef'
     end
 
-    trait :client do
-      role 'client'
+    trait :customer do
+      role 'customer'
     end
   end
 
