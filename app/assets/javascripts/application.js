@@ -15,3 +15,12 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+function highlightAllOnMouseover(className){
+  $(className).mouseover(function() {
+    $(className).addClass("hovering");
+  }).mouseleave(function() {
+    $(className).removeClass("hovering");
+  });
+}
+// highlightAllOnMouseover(".thing1");
+// highlightAllOnMouseover(".thing2");
