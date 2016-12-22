@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = @menu.orders.build
-    @mio = @order.menu_item_orders.build
+    @mio = @order.order_items.build
   end
 
   def create
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   private
 
     def whitelist
-      params.require(:order).permit( {menu_item_orders_attributes: [:quantity, :sale_price_cents, :menu_item_id ]} ).merge(customer: current_user)
+      params.require(:order).permit( {order_items_attributes: [:quantity, :sale_price_cents, :menu_item_id ]} ).merge(customer: current_user)
     end
 
     def find_order
