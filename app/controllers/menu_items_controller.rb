@@ -72,11 +72,6 @@ class MenuItemsController < ApplicationController
       end
     end
 
-    def current_chef?(item)
-      current_user == item.chef
-    end
-    helper_method :current_chef?
-
     def add_user_id_to_ingredients
       if params[:menu_item][:ingredients_attributes]["0"] &&
          !params[:menu_item][:ingredients_attributes]["0"][:name].empty?

@@ -12,7 +12,15 @@ class MenuPresenter < BasePresenter
     "#{start_date} to #{end_date}"
   end
 
-  private 
+  def menu_items
+    result = ""
+    menu.menu_items.each do |menu_item|
+      result += content_tag :li, link_to(menu_item.name, menu_item)
+    end
+    result.html_safe
+  end
+
+  private
 
   def menu
     @object

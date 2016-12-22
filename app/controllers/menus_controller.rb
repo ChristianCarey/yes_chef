@@ -67,7 +67,7 @@ class MenusController < ApplicationController
     end
 
     def require_current_chef
-      unless @menu.chef == current_user
+      unless current_chef?(@menu)
         flash[:danger] = "Get outta my menu."
         redirect_to current_user
       end
