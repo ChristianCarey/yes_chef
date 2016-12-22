@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :menus, dependent: :destroy
   has_many :menu_items, dependent: :destroy
 
-  has_many :menu_items
+  has_many :ingredients
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

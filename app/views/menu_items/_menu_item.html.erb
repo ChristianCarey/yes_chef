@@ -6,8 +6,13 @@
       </div>
       <div class="panel-body">
         <p><%= item.description %></p>
+        <ul>
+          <% item.ingredients.each do |ingredient| %>
+            <li><%= ingredient.name %></li>
+          <% end %>
+        </ul>
       </div>
-      <% if current_chef? %>
+      <% if current_chef?(item) %>
         <div class="panel-footer links">
           <p><%= link_to "Edit", edit_menu_item_path(item), class: "link" %> <%= link_to "Destroy", menu_item_path(item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
         </div>
