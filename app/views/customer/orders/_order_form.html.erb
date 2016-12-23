@@ -6,7 +6,7 @@
           <h4>
             <div class="row">
               <div class="col-xs-8">
-                <%= menu_item.name %>
+                <%= render_menu_item_img(menu_item)%><%= menu_item.name %>
               </div>
               <div class="col-xs-4">
                 <%= format_currency(menu_item.price_cents) %>
