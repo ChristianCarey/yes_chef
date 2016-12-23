@@ -24,4 +24,8 @@ class Order < ApplicationRecord
   def self.send_receipt(order_id)
     OrderMailer.receipt(find(order_id)).deliver!
   end
+
+  def self.send_order_to_chef(order_id)
+    OrderMailer.order_to_chef(find(order_id)).deliver!
+  end
 end
