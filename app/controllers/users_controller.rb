@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     redirect_to(root_path) unless chef?
+    @customers = current_user.customers
   end
 
   def show
