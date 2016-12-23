@@ -2,8 +2,8 @@
 <h1>Order Details</h1>
 
 <p>
-  <strong>Deadline to place or alter order:</strong>
-  <%= @order.menu.order_deadline %>
+  <strong>Your order will be ready on: </strong>
+  <%= stringify_date(@order.menu.completion_date) %>
 </p>
 
 <h3>What you'll be recieving:</h3>
