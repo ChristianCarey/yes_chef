@@ -10,6 +10,8 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :order_items, reject_if: proc { |attributes| attributes['quantity'].blank? || attributes['menu_item_id'].blank?}
 
+  validate :presence_of_order_selections
+
   def chef
     menu.chef
   end
@@ -27,4 +29,9 @@ class Order < ApplicationRecord
     OrderMailer.order_to_chef(find(order_id)).deliver_later
   end
 
+  def presence_of_order_selections
+    if self.menu_items.empty?
+      errors.add(:menu_items, :invalid, message: "Must select at least one item for this order.")
+    end
+  end
 end

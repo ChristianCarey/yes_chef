@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :menu_items
   resources :ingredients
+  resources :categories, only: [:show, :index]
 
   resources :orders, only: [:index, :show]
 

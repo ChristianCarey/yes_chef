@@ -2,7 +2,6 @@
 @import 'bootstrap';
 
 table {
-  text-align: center;
   th {
     text-align: center
   }
@@ -17,6 +16,15 @@ table {
     display: inline-block;
   }
 }
+
+.nav .nav-divider {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  display: block;
+  height: 1px;
+  margin: 0;
+}
+
 .alert-notice {
   @extend .alert-success;
 }
@@ -77,4 +85,8 @@ img {
     display: inline-block;
     margin-top: 10px;
   }
+}
+
+footer {
+  padding: 100px;
 }

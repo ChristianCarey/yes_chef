@@ -5,9 +5,9 @@
 <h4>Email:</h4>
 <%= @profile.user.email %>
 <h4>Telephone:</h4>
-<%= @profile.telephone %>
+<%= @profile.telephone || "Not available" %>
 <h4>Address:</h4>
-<%= @profile.address %>
+<%= @profile.address || "Not available" %>
 
 <br>
 <% if current_user == @user %>
