@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources   :menu_items
+  resources :menu_items
+  resources :ingredients
 
   resources   :orders, only: [:index, :show]
 

@@ -1,0 +1,16 @@
+<%= form_for @ingredient, html: { class: "form-inline" } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Create a new ingredient: " %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <%= f.submit "Create", class: 'btn btn-primary' %>
+<% end %>
+<hr>
+<table class ="table table-striped">
+  <tr>
+    <th>
+      Name
+    </th>
+  </tr>
+  <%= render @ingredients %>
+</table>
