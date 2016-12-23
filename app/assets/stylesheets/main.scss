@@ -4,6 +4,12 @@
 .link {
   margin-right: 20px;
 }
+
+.navbar-right {
+  li > a {
+    display: inline-block;
+  }
+}
 .alert-notice {
   @extend .alert-success;
 }
