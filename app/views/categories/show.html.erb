@@ -1,4 +1,4 @@
-<h1><%= @category.name %> Menu Items</h1>
+<% content_for :title, "#{@category.name} Menu Items" %>
 
 <% if @menu_items.size > 0 %>
   <%= render partial: 'menu_items/menu_item', collection: @menu_items, as: :menu_item %>
