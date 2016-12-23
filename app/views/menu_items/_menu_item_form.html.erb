@@ -7,7 +7,7 @@
     <%= fi.input :name %>
   <% end %>
   <h4>Price</h4>
-  <%= f.input :price_cents, label: "Price in dollars" %>
+  <%= f.input :price, label: "Price in dollars" %>
   <h4> Categories </h4>
   <%= f.association :categories %>
   <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>

@@ -19,7 +19,12 @@ class MenuItem < ApplicationRecord
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank
   accepts_nested_attributes_for :categories, reject_if: :all_blank
 
-  def price_cents=(price_cents)
-    self.price_cents = price_cents * 100
+  def price=(price)
+    p price
+    self.price_cents = (price.to_f * 100)
+  end
+
+  def price
+    (self.price_cents || 0).to_f / 100
   end
 end
