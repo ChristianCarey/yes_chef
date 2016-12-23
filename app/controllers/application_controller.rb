@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def chef?
-    signed_in_user? ? current_user.role == 'chef' : false
+    user_signed_in? ? current_user.role == 'chef' : false
   end
 
   def require_chef

@@ -1,1 +1,20 @@
-<%= render partial: 'customer', collection: current_user.customers, as: :customer %>
+<div class="row">
+<div class="col-md-6">
+  <h4>Your Customers</h4>
+  <%= form_tag nil, class: "form-inline"  do |f| %>
+  <div class="form-group">
+    <%= label_tag :name, "Find more customers" %>
+    <%= text_field_tag :name, nil, placeholder: "customer email", class: "form-control" %>
+  </div>
+  <%= submit_tag "Send Invite", class: 'btn btn-primary' %>
+<% end %>
+<hr>
+  <table class="table table-striped">
+  <tr>
+    <th>
+      Name
+    </th>
+  </tr>
+    <%= render partial: 'customer', collection: @customers , as: :customer %>
+  </table>
+</div>
