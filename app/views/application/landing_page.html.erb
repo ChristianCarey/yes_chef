@@ -1,15 +1,29 @@
 <div class="row">
-  <h2 class='text-center'>this is the landing page</h2>
-  
-  <div class="col-md-6">
-    <div class="chef_signup"> 
-    <%= link_to 'sign up as chef', new_user_registration_path(role: 'chef') %>
+  <div id="welcome message" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <h2 class='text-center'>Welcome to Yes, Chef!</h2>
+    <h5 class='text-center text-muted'>Where chefs and their customers come to make life easier.</h5>
+    <p>
+      Here you can look at your personal chef's available menu's and place orders in advance. With our fool-proof ordering system, never miss an order!
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div id="welcome message" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <h3 class='text-center'>Before we get started, are you a chef or a customer?</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 jumbotron">
+    <div class="chef_signup">
+    <%= link_to 'I\'m a Chef!', new_user_registration_path(role: 'chef'), class: "btn btn-block btn-lg btn-primary"  %>
     </div>
   </div>
-  
+
   <div class="col-md-6">
-    <div class="customer_signup"> 
-      <%= link_to 'sign up customer', new_user_registration_path(role: 'customer') %>
+    <div class="customer_signup jumbotron">
+      <%= link_to 'I\'m a Customer!', new_user_registration_path(role: 'customer'), class: "btn btn-block btn-lg btn-success" %>
     </div>
   </div>
 </div>

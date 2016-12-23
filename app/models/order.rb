@@ -17,4 +17,11 @@ class Order < ApplicationRecord
     order_items.sum('sale_price_cents * quantity')
   end
 
+  def total_items
+    order_items.count
+  end
+
+  def self.send_receipt(order_id)
+    OrderMailer.receipt(find(order_id)).deliver!
+  end
 end

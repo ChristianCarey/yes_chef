@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
+  def index
+    redirect_to(root_path) unless chef?
+  end
+
   def show
   end
 

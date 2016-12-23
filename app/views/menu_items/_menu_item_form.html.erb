@@ -6,6 +6,8 @@
   <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
     <%= fi.input :name %>
   <% end %>
+  <h4>Price</h4>
+  <%= f.input :price, label: "Price in dollars" %>
   <h4> Categories </h4>
   <%= f.association :categories %>
   <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>
