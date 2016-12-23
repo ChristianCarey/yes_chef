@@ -10,6 +10,8 @@ Rails.application.configure do
       s3_region: ENV['AWS_REGION']
     }
   }
+
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
