@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= customer.name %>
+    <%= link_to customer.name, user_profile_path(customer) %>
   </td>
   <td>
     <%= customer.placed_orders_count %>
