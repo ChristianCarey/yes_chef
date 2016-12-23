@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <div class="panel panel-default menu-item-partial">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= menu_item.name %></h3>
+          <h3 class="panel-title"><%= link_to "#{menu_item.name}", menu_item, class: "menu_item_link" %></h3>
           <%= menu_item_presenter.categories %>
         </div>
         <div class="panel-body">
@@ -14,8 +14,10 @@
         </div>
         <% if current_chef?(menu_item) %>
           <div class="panel-footer links">
-            <p><%= link_to "Edit", edit_menu_item_path(menu_item), class: "link" %> 
-               <%= link_to "Destroy", menu_item_path(menu_item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
+            <div class="btn-group" role="group" aria-label="...">
+              <%= link_to "Edit", edit_menu_item_path(menu_item), class: "btn btn-default btn-success" %>
+               <%= link_to "Destroy", menu_item_path(menu_item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "btn btn-default btn-danger" %>
+             </div>
           </div>
         <% end %>
       </div>
