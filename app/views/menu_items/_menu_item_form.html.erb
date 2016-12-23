@@ -7,7 +7,7 @@
       <h4> Ingredients </h4>
       <%= f.association :ingredients, label: false %>
       <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
-      <%= fi.input :name, label: 'Add a new ingredient', placeholder: 'e.g. peanuts', input_html: { required: false } %>
+        <%= fi.input :name, label: 'Add a new ingredient', placeholder: 'e.g. peanuts', required: false %>
       <% end %>
     </div>
 
@@ -20,8 +20,8 @@
     </div>
   </div>
 
-    <h4>Price</h4>
-    <%= f.input :price, label: "Price in dollars", placeholder: '25.00' %>
+  <h4>Price</h4>
+  <%= f.input :price, label: "Price in dollars", placeholder: '25.00' %>
 
   <%= render partial: 'img_upload_form', locals:{form: f} %>
   <%= f.submit %>
