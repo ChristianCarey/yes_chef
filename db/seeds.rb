@@ -1,12 +1,14 @@
 puts "Destroying everything..."
 User.destroy_all
-MenuItem.destroy_all
-Menu.destroy_all
+Category.destroy_all
+Ingredient.destroy_all
 OrderItem.destroy_all
 Order.destroy_all
-Category.destroy_all
+MenuItem.destroy_all
+Menu.destroy_all  
 Profile.destroy_all
-Ingredient.destroy_all
+
+
 
 CATEGORIES = %w(Breakfast Lunch Dinner Vegan Gluten-free Vegetarian Paleo Freegan)
 

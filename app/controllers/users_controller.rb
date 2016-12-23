@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def index
     redirect_to(root_path) unless chef?
     @customers = current_user.customers
+    @top_ten_customers = current_user.top_ten_customers
+    @top_ten_menu_items = current_user.top_ten_menu_items
   end
 
   def show
