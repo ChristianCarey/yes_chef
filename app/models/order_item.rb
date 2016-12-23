@@ -9,6 +9,10 @@ class OrderItem < ApplicationRecord
 
   before_create :set_calculated_fields
 
+  def menu_item_total_price
+    self.quantity * self.menu_item.price_cents
+  end
+
   private
     def set_calculated_fields
       set_item_name

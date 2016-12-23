@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   def chef?
     user_signed_in? ? current_user.role == 'chef' : false
   end
+  helper_method :chef?
 
   def require_chef
     unless chef?
