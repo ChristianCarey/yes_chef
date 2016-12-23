@@ -1,6 +1,7 @@
 <% present order do |order_presenter| %>
   <tr>
     <td><%= link_to "Review", order %></td>
+    <td><%= order.created_at.strftime("%A, %b %d") %></td>
     <td><%= order_presenter.completion_date_or_delivered %></td>
     <td><%= order_presenter.order_total %></td>
   </tr>
