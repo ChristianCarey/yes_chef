@@ -8,9 +8,7 @@
         </div>
         <div class="panel-body">
           <p><%= menu_item.description %></p>
-          <ul>
-            <%= menu_item_presenter.ingredients %>
-          </ul>
+          <%= menu_item_presenter.ingredients %>
         </div>
         <% if current_chef?(menu_item) %>
           <div class="panel-footer links">

@@ -1,18 +1,28 @@
 <%= simple_form_for menu_item, html: { class: 'syncronousUpload' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <h4> Ingredients </h4>
-  <%= f.association :ingredients %>
-  <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
-    <%= fi.input :name %>
-  <% end %>
-  <h4>Price</h4>
-  <%= f.input :price, label: "Price in dollars" %>
-  <h4> Categories </h4>
-  <%= f.association :categories %>
-  <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>
-    <%= fi.input :name %>
-  <% end %>
+  <%= f.input :name, placeholder: 'e.g. Savory Roast Beef' %>
+  <%= f.input :description, placeholder: 'e.g. Round of beef, seasoned lightly with garlic, carrots, crushed black pepper, and other spices, slowly roasted in a traditional clay oven' %>
+
+  <div class="row">
+    <div class="menu-item-ingredients-form col-sm-6">
+      <h4> Ingredients </h4>
+      <%= f.association :ingredients, label: false %>
+      <%= f.simple_fields_for :ingredients, menu_item.ingredients.build do |fi| %>
+      <%= fi.input :name, label: 'Add a new ingredient', placeholder: 'e.g. peanuts', input_html: { required: false } %>
+      <% end %>
+    </div>
+
+    <div class="menu-item-categories-form col-sm-6">
+      <h4> Categories </h4>
+      <%= f.association :categories, label: false %>
+      <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>
+      <%= fi.input :name, label: 'Add a new category', placeholder: 'e.g. Brunch' %>
+      <% end %>
+    </div>
+  </div>
+
+    <h4>Price</h4>
+    <%= f.input :price, label: "Price in dollars", placeholder: '25.00' %>
+
   <%= render partial: 'img_upload_form', locals:{form: f} %>
   <%= f.submit %>
 <% end %>

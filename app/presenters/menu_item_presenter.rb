@@ -1,9 +1,11 @@
 class MenuItemPresenter < BasePresenter
 
   def ingredients
-    menu_item.ingredients.map do |ingredient|
-      content_tag :li, ingredient.name
-    end.join.html_safe
+    result = "Ingredients: "
+    result += menu_item.ingredients.map do |ingredient|
+      ingredient.name
+    end.join(", ")
+    content_tag :p, result, class: "ingredients-list"
   end
 
   def categories
