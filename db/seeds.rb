@@ -43,6 +43,9 @@ puts "Creating categories..."
 CATEGORIES.each do |category|
   Category.create(name: category)
 end
+50.times do
+  Category.create(name: Faker::Hipster.word)
+end
 
 puts "Creating ingredients..."
 10.times do

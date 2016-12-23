@@ -1,14 +1,16 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = []
+    # @categories = []
 
-    mis = current_user.menu_items
-    mis.each do |mi|
-      CategoriesMenuItem.where('menu_item_id = ?', mi.id).find_each do |r|
-        @categories << r.category unless @categories.include?(r.category)
-      end
-    end
+    # mis = current_user.menu_items
+    # mis.each do |mi|
+    #   CategoriesMenuItem.where('menu_item_id = ?', mi.id).find_each do |r|
+    #     @categories << r.category unless @categories.include?(r.category)
+    #   end
+    # end
+    @categories = Category.all
+
   end
 
   def show
