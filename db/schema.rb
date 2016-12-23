@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161223055327) do
+ActiveRecord::Schema.define(version: 20161223065220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,18 +65,18 @@ ActiveRecord::Schema.define(version: 20161223055327) do
   end
 
   create_table "menu_items", force: :cascade do |t|
-    t.string   "name",               null: false
-    t.text     "description",        null: false
+    t.string   "name",                           null: false
+    t.text     "description",                    null: false
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "price_cents",        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "price_cents",                    null: false
+    t.integer  "order_items_count",  default: 0
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "url"
-    t.integer  "order_items_count", default: 0
     t.index ["name", "user_id"], name: "index_menu_items_on_name_and_user_id", using: :btree
     t.index ["user_id", "name"], name: "index_menu_items_on_user_id_and_name", using: :btree
     t.index ["user_id"], name: "index_menu_items_on_user_id", using: :btree

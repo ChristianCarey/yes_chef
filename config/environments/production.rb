@@ -1,4 +1,15 @@
 Rails.application.configure do
+  # Amazon with paperclip
+  config.paperclip_defaults = { 
+    storage: :s3,
+    s3_credentials: { 
+      s3_host_name: ENV['AWS_HOST_NAME'],
+      bucket: ENV['BUCKET_NAME'],
+      access_key_id: ENV['AWS_ACCESS_KEY'],
+      secret_access_key: ENV['AWS_SECRET_KEY'],
+      s3_region: ENV['AWS_REGION']
+    }
+  }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
