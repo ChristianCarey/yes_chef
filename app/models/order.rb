@@ -18,10 +18,12 @@ class Order < ApplicationRecord
   end
 
   def total_items
-    order_items.count
+    order_items.inject(0) {|sum, item| sum + (item.quantity)}
   end
 
   def self.send_receipt(order_id)
-    OrderMailer.receipt(find(order_id)).deliver!
+    OrderMailer.receipt(find(order_id)).deliver_layer
+    OrderMailer.order_to_chef(find(order_id)).deliver_layer
   end
+
 end

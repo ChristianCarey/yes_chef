@@ -1,5 +1,26 @@
-<p><%= @chef.first_name %>,</p>
-
-<p>You've just received an order for <%= pluralize(@order.total_items, "count") %> from <%= @customer.name %>. This order should be completed by <%= @order.completion_date.strftime("%A, %B %d")%>. View the full order <%= "here", link_to user_order_path(@customer, @order) %>.</p>
-
-<p>Thanks again for using Yes, Chef! Have a delicious day.</p>
+<tr>
+  <td width="600" valign="top">
+    <p><%= @chef.profile.first_name %>,</p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      You've just received an order for <%= pluralize(@order.total_items, "meal") %> from <%= @customer.name %>. This order should be completed by <%= @order.menu.completion_date.strftime("%A, %B %d")%>.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      View the full order details <%= link_to "here", user_order_url(@customer, @order) %>.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      Thanks again for using Yes, Chef! Have a delicious day.
+    </p>
+  </td>
+</tr>
