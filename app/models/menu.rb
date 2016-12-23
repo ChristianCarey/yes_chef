@@ -9,7 +9,10 @@ class Menu < ApplicationRecord
 
   validates_presence_of :order_deadline, :completion_date
 
+  validates_uniqueness_of :completion_date, scope: :chef
+
   validate :correct_dates
+  validate :presence_of_menu_selections
 
   private
     def correct_dates
@@ -17,6 +20,12 @@ class Menu < ApplicationRecord
         correct_deadline
         in_the_past(completion_date, :completion_date)
         in_the_past(order_deadline, :order_deadline)
+      end
+    end
+
+    def presence_of_menu_selections
+      if self.menu_selections.empty?
+        errors.add(:menu_item_ids, :invalid, message: "Must select at least one item for this menu.")
       end
     end
 

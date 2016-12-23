@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for  :users, :controllers => { registrations: 'registrations' }
 
+
   namespace :chef do
     resources :menus
+    resource :customers
+    resource :orders
   end
 
   namespace :customer do
@@ -12,16 +15,20 @@ Rails.application.routes.draw do
   end
 
   resources   :users do
+    resource :profile
     resources :orders
   end
 
-  resources   :menu_items
+  resources :menu_items
+  resources :ingredients
+  resources :categories, only: [:show, :index]
 
-  resources   :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show]
 
+  get '/send_invite' => 'users#send_invite'
 
   authenticated :user do
-    root 'users#current_user_home', as: :authenticated_root
+    root 'menus#index', as: :authenticated_root
   end
   root to: 'application#landing_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

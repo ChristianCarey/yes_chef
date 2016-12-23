@@ -1,0 +1,14 @@
+<div class="bordered spaced">
+  <div id="upload-errors" class="alert alert-danger hidden" role="alert">
+  </div>
+  <div class="form-group">
+    <label class="btn btn-default btn-file btn-block">
+      <strong>Click Here or Drag-and-Drop to Upload Image</strong> <%= form.file_field :image, accept: "image/*" %>
+    </label>
+  </div>
+  <h4><strong>OR</strong></h4>
+  <div class="form-group">
+    <%= form.label :url, "Enter Url" %>
+    <%= form.text_field :url, class: 'form-control', placeholder: 'https://cdn.keycdn.com/img/cdn-fast.svg' %>
+  </div>
+</div>

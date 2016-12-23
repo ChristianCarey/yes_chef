@@ -1,0 +1,28 @@
+<tr>
+  <td width="600" valign="top">
+    <p>
+      <%= @customer.profile.first_name %>,
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      You've just ordered <%= pluralize(@order.total_items, "meal") %> from <%= @chef.name %> for <%= number_to_currency(@order.total.to_f / 100) %>.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      View a record of your order <%= link_to "here", user_order_url(@customer, @order) %>.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      Thanks again for using Yes, Chef! Have a delicious day.
+    </p>
+  </td>
+</tr>

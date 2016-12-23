@@ -1,0 +1,6 @@
+<% content_for :title, "All Orders" %>
+<div class="row">
+  <div class="col-xs-12">
+    <%= render partial: "orders_table", locals: { orders: @orders } %>
+  </div>
+</div>

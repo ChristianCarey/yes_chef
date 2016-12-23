@@ -1,2 +1,32 @@
-
-<%= render partial: 'menu_item', locals: { menu_item: @menu_item } %>
+<% content_for :title, "Menu Item: #{@menu_item.name}" %>
+<% present @menu_item do |menu_item_presenter| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default menu-item-partial">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="col-xs-6 col-sm-4">
+              <%= @menu_item.name %>
+            </span>
+            <span class="col-xs-6 col-sm-8">
+              <%= menu_item_presenter.categories %>
+            </span>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+          <%= menu_item_presenter.description %>
+          <%= menu_item_presenter.ingredients %>
+          <%= menu_item_presenter.panel_body_image %>
+          <%= menu_item_presenter.menu_item_orders_count %>
+        </div>
+        <% if current_chef?(@menu_item) %>
+          <div class="panel-footer links">
+            <p><%= link_to "Edit", edit_menu_item_path(@menu_item), class: "link" %>
+               <%= link_to "Destroy", menu_item_path(@menu_item), method: :delete, data:{confirm: "Are you sure? cannot be undone." }, class: "link" %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

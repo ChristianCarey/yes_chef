@@ -1,18 +1,33 @@
 <%= simple_form_for [:customer, order.menu, order] do |f| %>
   <% order.menu.menu_items.each do |menu_item| %>
     <%= f.simple_fields_for :order_items, oi do |m| %>
-        <p>
-        <%= menu_item.name %>
-        <%= m.input :menu_item_id, as: :hidden, input_html: { value: menu_item.id } %>
-        <%= m.input :quantity, input_html: { class: 'input-medium' } %>
-        </p>
-        <%= menu_item.description %>
-      <% end %>
+      <div class="row">
+        <div class="col-md-8 col-xs-8">
+          <h4>
+            <div class="row">
+              <div class="col-xs-8">
+                <%= render_menu_item_img(menu_item)%><%= menu_item.name %>
+              </div>
+              <div class="col-xs-4">
+                <%= format_currency(menu_item.price_cents) %>
+              </div>
+            </div>
+          </h4>
+          <%= m.input :menu_item_id, as: :hidden, input_html: { value: menu_item.id } %>
+          <p>
+            <%= menu_item.description %>
+          </p>
+        </div>
+        <div class="col-md-2 col-xs-4 pull-right">
+          <%= m.input :quantity, input_html: { class: 'input-medium' } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <hr>
+        </div>
+      </div>
     <% end %>
-<<<<<<< Updated upstream
-  <%= f.submit %>
-=======
   <% end %>
   <%= f.button :submit, "Create Order", class: "btn btn-primary" %>
->>>>>>> Stashed changes
 <% end %>

@@ -1,6 +1,7 @@
-<tr>
-  <td><%= order.menu.chef.email %></td>
-  <td><%= order.menu.completion_date %></td>
-  <td><%= format_currency(order.total) %></td>
-  <td><%= link_to "Review", order %></td>
-</tr>
+<% present order do |order_presenter| %>
+  <tr>
+    <td><%= link_to "Review", order %></td>
+    <td><%= order_presenter.completion_date_or_delivered %></td>
+    <td><%= order_presenter.order_total %></td>
+  </tr>
+<% end %>

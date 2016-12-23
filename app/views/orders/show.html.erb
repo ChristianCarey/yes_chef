@@ -1,35 +1,17 @@
+<% content_for :title, "Order Details" %>
 <% present @order do |order_presenter| %>
-<h1>Order Details</h1>
 
-<p>
-  <strong>Deadline to place or alter order:</strong>
-  <%= @order.menu.order_deadline %>
-</p>
+<!-- <p>
+  <strong>Your order will be ready on: </strong>
+  <%#= order_presenter.completion_date %>
+</p> -->
 
-<h3>What you'll be recieving:</h3>
+<%= order_presenter.table_lead_in %>
 
 <table class='table table-striped table-bordered'>
-  <thead>
-    <th>Item</th>
-    <th>Quantity</th>
-    <th>Price</th>
-  </thead>
+  <%= order_presenter.order_table_header %>
   <tbody>
-    <% @order.order_items.each do |mio| %>
-      <tr>
-        <td>
-          <strong><%= mio.menu_item.name %></strong>
-          <br>
-          <%= mio.menu_item.description %>
-        </td>
-        <td>
-          <%= mio.quantity %>
-        </td>
-        <td>
-          <%= format_currency(mio.quantity * mio.sale_price_cents) %>
-        </td>
-      </tr>
-    <% end %>
+    <%= order_presenter.order_table_items %>
       <tr>
         <td></td>
         <td><strong>Total price:</strong></td>

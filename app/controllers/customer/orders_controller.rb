@@ -13,6 +13,7 @@ class Customer::OrdersController < ApplicationController
     @order = @menu.orders.build(whitelist)
     if @order.save
       flash[:success] = 'Order placed!'
+      Order.send_receipt(@order.id)
       redirect_to @order
     else
       flash[:danger] = 'Unable to place order!'

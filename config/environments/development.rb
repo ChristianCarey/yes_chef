@@ -1,5 +1,16 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # TODO: Uncomment paperclip settings to test image before deployment
+
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   s3_region: Rails.application.secrets.aws_region,
+  #   s3_credentials: {
+  #     :s3_host_name => "s3-#{Rails.application.secrets.aws_region}.amazonaws.com",
+  #     bucket: Rails.application.secrets.s3_bucket_name,
+  #     access_key_id: Rails.application.secrets.aws_access_key_id,
+  #     secret_access_key: Rails.application.secrets.aws_secret_access_key
+  #   }
+  # }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -26,9 +37,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Letter opener for email
+  config.action_mailer.delivery_method = :letter_opener
   # devise
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

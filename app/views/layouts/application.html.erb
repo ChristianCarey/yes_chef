@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YesChef</title>
+    <title>Yes, Chef! | <% if content_for :title %><%= yield(:title) %><% else %>Ordering Made Better<% end %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,6 +12,14 @@
   <body>
     <main class="container">
       <%= render partial: 'shared/navbar' %>
+      <% if content_for :title %>
+        <div class="row">
+          <div class="col-sm-10 pull-right">
+            <h2><%= yield(:title) %></h2>
+            <hr>
+          </div>
+        </div>
+      <% end %>
       <div class="row">
         <% if signed_in? && current_user.role == 'chef' %>
           <%= render partial: 'shared/chef_nav' %>
@@ -23,8 +32,10 @@
         <% end %>
           <%= render partial: 'shared/flash' %>
           <%= yield %>
-        </div>
-      </div>
+        </div><!-- col -->
+      </div><!-- row -->
     </main>
+    <footer>
+    </footer>
   </body>
 </html>

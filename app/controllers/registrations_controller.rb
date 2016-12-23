@@ -4,6 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
     # TODO determine default or redirect
     if params[:role] && ['chef', 'customer'].include?(params[:role].downcase)
       @role = params[:role]
+      @chef_id = params[:chef]
       super
     else
       flash[:danger] = ['Something went wrong...', 'Must select Chef or Customer']
@@ -14,6 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
     def sign_up_params
-      params.require(:user).permit(:role, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :role, :email, :password, :password_confirmation, :chef_id)
     end
 end

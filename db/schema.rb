@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222215422) do
+ActiveRecord::Schema.define(version: 20161223171224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 20161222215422) do
     t.datetime "updated_at",   null: false
     t.index ["category_id"], name: "index_categories_menu_items_on_category_id", using: :btree
     t.index ["menu_item_id"], name: "index_categories_menu_items_on_menu_item_id", using: :btree
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -50,12 +65,19 @@ ActiveRecord::Schema.define(version: 20161222215422) do
   end
 
   create_table "menu_items", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.text     "description", null: false
+    t.string   "name",                           null: false
+    t.text     "description",                    null: false
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "price_cents", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "price_cents",                    null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "url"
+    t.integer  "order_items_count",  default: 0
+    t.boolean  "image_processing"
     t.index ["name", "user_id"], name: "index_menu_items_on_name_and_user_id", using: :btree
     t.index ["user_id", "name"], name: "index_menu_items_on_user_id_and_name", using: :btree
     t.index ["user_id"], name: "index_menu_items_on_user_id", using: :btree
@@ -81,22 +103,34 @@ ActiveRecord::Schema.define(version: 20161222215422) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "menu_item_id",     null: false
+    t.integer  "menu_item_id"
     t.integer  "order_id"
     t.integer  "quantity",         null: false
     t.integer  "sale_price_cents", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "item_name"
     t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id", using: :btree
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "menu_id",     null: false
-    t.integer  "customer_id", null: false
+    t.integer  "menu_id"
+    t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["menu_id", "customer_id"], name: "index_orders_on_menu_id_and_customer_id", using: :btree
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "telephone"
+    t.string   "address"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,6 +148,7 @@ ActiveRecord::Schema.define(version: 20161222215422) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "chef_id"
+    t.integer  "placed_orders_count",    default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -127,4 +162,5 @@ ActiveRecord::Schema.define(version: 20161222215422) do
   add_foreign_key "menu_selections", "menus"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "profiles", "users"
 end
