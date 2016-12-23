@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   def index
-    @ingredients = current_user.ingredients
+    @ingredients = current_user.ingredients.to_a
     @ingredient = current_user.ingredients.build
   end
 
