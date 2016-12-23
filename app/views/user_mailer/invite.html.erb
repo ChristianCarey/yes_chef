@@ -1,12 +1,12 @@
 <tr>
   <td width="600" valign="top">
-    <p>G'day <%= @name %>!</p>
+    <p>G'day<%= @name == "" ? nil : " #{@name}"  %>!</p>
   </td>
 </tr>
 <tr>
   <td width="600" valign="top">
     <p>
-      Your personal chef, <%= @chef.name %> has invited you to use their automated ordering system at Yes, Chef! By signing up for this system, you can view upcoming menus, track your order history, and more absolutely free!
+      Your personal chef, <%= @chef.name %>, has invited you to use their automated ordering system at Yes, Chef! By signing up for this system, you can view upcoming menus, track your order history, and more absolutely free!
     </p>
   </td>
 </tr>

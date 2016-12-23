@@ -12,6 +12,17 @@ class UsersController < ApplicationController
   def current_user_home
     redirect_to current_user
   end
+
+  def send_invite
+    if chef?
+      flash[:success] = "Invitation to #{params[:name] || params[:email]} sent!"
+      User.send_invite(current_user, params[:email], params[:name])
+    else
+      flash[:danger] = "Only chefs can invite other users"
+    end
+    redirect_to :back
+  end
+
   private
 
     def set_user
