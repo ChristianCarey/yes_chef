@@ -6,7 +6,7 @@
   </ul>
   <h4>Orders</h4>
   <ul>
-    <%= render @menu.orders %>
+    <%= render partial: 'shared/order', collection: @menu.orders %>
   </ul>
 
   <p><%= link_to "Edit", edit_chef_menu_path(@menu) %></p>

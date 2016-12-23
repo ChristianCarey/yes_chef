@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_action :chef_or_current_user?
 
   def index
+    @orders = @user.placed_orders
   end
 
   def show
