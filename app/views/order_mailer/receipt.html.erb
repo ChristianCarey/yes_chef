@@ -1,0 +1,6 @@
+<p><%= @customer.first_name %>,</p>
+
+<p>You've just ordered <%= pluralize(@order.total_items, "meal") %> from <%= @chef.name %>.
+View a record of your order <%= link_to "here", user_order_url(@customer, @order) %>.</p>
+
+<p>Thanks again for using Yes, Chef! Have a delicious day.</p>

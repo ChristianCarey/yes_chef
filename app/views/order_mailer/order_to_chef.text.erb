@@ -1,0 +1,5 @@
+<%= @chef.first_name %>, 
+
+You've just received an order for <%= pluralize(@order.total_items, "count") %> from <%= @customer.name %>. This order should be completed by <%= @order.completion_date.strftime("%A, %B %d")%>. View the full order <%= "here", link_to user_order_path(@customer, @order) %>.
+
+Thanks again for using Yes, Chef! Have a delicious day.
