@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20161223061709) do
     t.datetime "image_updated_at"
     t.string   "url"
     t.integer  "order_items_count",  default: 0
+    t.boolean  "image_processing"
     t.index ["name", "user_id"], name: "index_menu_items_on_name_and_user_id", using: :btree
     t.index ["user_id", "name"], name: "index_menu_items_on_user_id_and_name", using: :btree
     t.index ["user_id"], name: "index_menu_items_on_user_id", using: :btree
