@@ -15,16 +15,18 @@
 </div>
 <hr>
 
-<div class="row">
-  <div class="col-md-6 jumbotron">
-    <div class="chef_signup">
-    <%= link_to 'I\'m a Chef!', new_user_registration_path(role: 'chef'), class: "btn btn-block btn-lg btn-primary"  %>
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-6 jumbotron">
+      <div class="chef_signup">
+        <%= link_to 'I\'m a Chef!', new_user_registration_path(role: 'chef'), class: "btn btn-block btn-lg btn-primary"  %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-6 jumbotron">
-    <div class="customer_signup">
-      <%= link_to 'I\'m a Customer!', new_user_registration_path(role: 'customer'), class: "btn btn-block btn-lg btn-success" %>
+    <div class="col-md-6 jumbotron">
+      <div class="customer_signup">
+        <%= link_to 'I\'m a Customer!', new_user_registration_path(role: 'customer'), class: "btn btn-block btn-lg btn-success" %>
+      </div>
     </div>
   </div>
 </div>
