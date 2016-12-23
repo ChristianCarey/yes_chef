@@ -6,9 +6,14 @@
           <h3 class="panel-title"><%= link_to "#{menu_item.name}", menu_item, class: "menu_item_link" %></h3>
           <%= menu_item_presenter.categories %>
         </div>
-        <div class="panel-body">
-          <p><%= menu_item.description %></p>
-          <%= menu_item_presenter.ingredients %>
+        <div class="panel-body row">
+          <div class="panel-body-text col-xs-8">
+            <%= menu_item_presenter.description %>
+            <%= menu_item_presenter.ingredients %>
+          </div>
+          <div class="panel-body-image col-xs-4">
+            <%= menu_item_presenter.panel_body_image %>
+          </div>
         </div>
         <% if current_chef?(menu_item) %>
           <div class="panel-footer links">

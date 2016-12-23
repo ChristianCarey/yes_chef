@@ -14,7 +14,16 @@ class MenuItemPresenter < BasePresenter
       content_tag :span, category.name, class: "label label-warning category-label"
     end.join.html_safe
   end
-  
+
+  def description
+    content_tag :p, menu_item.description
+  end
+
+  def panel_body_image
+    if @template.action_name == 'index'
+      image_tag menu_item.image.url(:medium)
+    end
+  end 
   
 
 
