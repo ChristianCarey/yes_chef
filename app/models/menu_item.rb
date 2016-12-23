@@ -17,6 +17,9 @@ class MenuItem < ApplicationRecord
   validates_uniqueness_of :name, scope: [:user_id]
 
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank
-
   accepts_nested_attributes_for :categories, reject_if: :all_blank
+
+  def price_cents=(price_cents)
+    self.price_cents = price_cents * 100
+  end
 end
