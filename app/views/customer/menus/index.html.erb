@@ -1,38 +1,40 @@
 <h1>Menus</h1>
-<div id="menus">
-  <h2 id="month">
-    <%= link_to "<", date: @date.prev_month %>
-    <%= @date.strftime("%B %Y")%>
-    <%= link_to ">", date: @date.next_month %>
-  </h2>
-  <%= calendar @date do |date| %>
-    <%= date.day %>
-    <% if @completion_dates[date] %>
-      <% if (order_date = already_ordered_completion(date)) != [] %>
-          <p class="ordered">
-            <%= link_to "View Order", order_path(order_date) %>
-          </p>
-      <% else %>
-        <% @completion_dates[date].each do |menu| %>
-          <p class="available">
-            <%= link_to "Place Order", new_customer_menu_order_path(menu) %>
-          </p>
+  <div id="menus">
+    <h2 id="month">
+      <%= link_to "<", date: @date.prev_month %>
+      <%= @date.strftime("%B %Y")%>
+      <%= link_to ">", date: @date.next_month %>
+    </h2>
+    <%= calendar @date do |date| %>
+      <%= date.day %>
+      <% if @completion_dates[date] %>
+        <% if (order_date = already_ordered_completion(date)) != [] %>
+            <p class="ordered">
+              <%= link_to "View Order", order_path(order_date) %>
+            </p>
+        <% else %>
+          <% @completion_dates[date].each do |menu| %>
+            <p class="available">
+              <%= link_to "Place Order", new_customer_menu_order_path(menu) %>
+            </p>
+          <% end %>
         <% end %>
-      <% end %>
-    <% elsif @order_deadlines[date] %>
-      <% @order_deadlines[date].each do |menu| %>
-        <% unless already_ordered_deadline(date) %>
-          <p class="deadline">
-            <small>
-              Order Deadline for:
-              <%= link_to menu.completion_date.strftime("%B #{menu.completion_date.day.ordinalize}"), new_customer_menu_order_path(menu) %>
-            </small>
-          </p>
+      <% elsif @order_deadlines[date] %>
+        <% @order_deadlines[date].each do |menu| %>
+          <% unless already_ordered_deadline(date) %>
+            <p class="deadline">
+              <small>
+                Order Deadline for:
+                <%= link_to menu.completion_date.strftime("%B #{menu.completion_date.day.ordinalize}"), new_customer_menu_order_path(menu) %>
+              </small>
+            </p>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 <script type="text/javascript">
   $('.ordered').parent().addClass("bg-success");
   $('.available').parent().addClass("bg-warning");
