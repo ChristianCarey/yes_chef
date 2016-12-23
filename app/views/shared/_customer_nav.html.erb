@@ -12,13 +12,9 @@
       </div>
       <div class="navbar-collapse collapse sidebar-navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Menus", chef_menus_path %></li>
-          <li><%= link_to "Create Menu", new_chef_menu_path %></li>
+          <li><%= link_to "Menus", customer_menus_path %></li>
           <li class="nav-divider"></li>
-          <li><%= link_to "Menus Item", menu_items_path %></li>
-          <li><%= link_to "Create Menu Item", new_menu_item_path %></li>
-          <li class="nav-divider"></li>
-          <li><%= link_to "Chef Stats", "#" %></li>
+          <li><%= link_to "Order History", user_orders_path(current_user) %></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

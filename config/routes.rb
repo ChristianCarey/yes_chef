@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
   devise_for  :users, :controllers => { registrations: 'registrations' }
+
+
+  namespace :chef do
+    resources :menus
+  end
+
+  namespace :customer do
+    resources :menus, only: [:index, :show] do
+      resources :orders, except: [:index, :show]
+    end
+  end
+
   resources   :users do
     resource :profile
-  end
-  resources   :menu_items
-  resources   :menus do
     resources :orders
   end
+
+  resources   :menu_items
+
+  resources   :orders, only: [:index, :show]
+
 
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root

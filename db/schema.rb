@@ -49,17 +49,6 @@ ActiveRecord::Schema.define(version: 20161223003833) do
     t.index ["menu_item_id"], name: "index_ingredients_menu_items_on_menu_item_id", using: :btree
   end
 
-  create_table "menu_item_orders", force: :cascade do |t|
-    t.integer  "menu_item_id",     null: false
-    t.integer  "order_id"
-    t.integer  "quantity",         null: false
-    t.integer  "sale_price_cents", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["menu_item_id"], name: "index_menu_item_orders_on_menu_item_id", using: :btree
-    t.index ["order_id"], name: "index_menu_item_orders_on_order_id", using: :btree
-  end
-
   create_table "menu_items", force: :cascade do |t|
     t.string   "name",        null: false
     t.text     "description", null: false
@@ -89,6 +78,18 @@ ActiveRecord::Schema.define(version: 20161223003833) do
     t.datetime "updated_at",                  null: false
     t.integer  "orders_count",    default: 0
     t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "menu_item_id"
+    t.integer  "order_id"
+    t.integer  "quantity",         null: false
+    t.integer  "sale_price_cents", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "item_name"
+    t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id", using: :btree
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -134,9 +135,12 @@ ActiveRecord::Schema.define(version: 20161223003833) do
   add_foreign_key "ingredients", "users"
   add_foreign_key "ingredients_menu_items", "ingredients"
   add_foreign_key "ingredients_menu_items", "menu_items"
-  add_foreign_key "menu_item_orders", "menu_items"
-  add_foreign_key "menu_item_orders", "orders"
   add_foreign_key "menu_selections", "menu_items"
   add_foreign_key "menu_selections", "menus"
+<<<<<<< HEAD
   add_foreign_key "profiles", "users"
+=======
+  add_foreign_key "order_items", "menu_items"
+  add_foreign_key "order_items", "orders"
+>>>>>>> master
 end

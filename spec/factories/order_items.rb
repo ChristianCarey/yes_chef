@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :menu_item_order do
+  factory :order_items do
     menu_item nil
     order nil
     quantity 1

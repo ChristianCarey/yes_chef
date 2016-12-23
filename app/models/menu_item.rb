@@ -8,8 +8,8 @@ class MenuItem < ApplicationRecord
   has_many :categories_menu_items, inverse_of: :menu_item, dependent: :destroy
   has_many :categories, through: :categories_menu_items, inverse_of: :menu_items
 
-  has_many :menu_item_orders
-  has_many :orders, through: :menu_item_orders
+  has_many :order_items, dependent: :nullify
+  has_many :orders, through: :order_items
 
   belongs_to :chef, class_name: "User", foreign_key: :user_id
 

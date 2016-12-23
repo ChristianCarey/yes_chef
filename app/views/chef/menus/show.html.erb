@@ -1,0 +1,14 @@
+<% present @menu do |menu_presenter| %>
+  <h2><%= menu_presenter.date_range %></h2>
+  <h4>Available Menu Items</h4>
+  <ul>
+    <%= menu_presenter.menu_items %>
+  </ul>
+  <h4>Orders</h4>
+  <ul>
+    <%= render partial: 'shared/order', collection: @menu.orders %>
+  </ul>
+
+  <p><%= link_to "Edit", edit_chef_menu_path(@menu) %></p>
+  <p><%= link_to "Delete", chef_menu_path(@menu), method: :delete %></p>
+<% end %>

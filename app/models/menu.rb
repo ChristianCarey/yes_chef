@@ -1,14 +1,15 @@
 class Menu < ApplicationRecord
   belongs_to :chef, class_name: 'User', foreign_key: :user_id
 
-  has_many :orders
   has_many :menu_selections, inverse_of: :menu, dependent: :destroy
   has_many :menu_items, through: :menu_selections
-  has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :nullify
 
   accepts_nested_attributes_for :menu_selections
 
   validates_presence_of :order_deadline, :completion_date
+
+  validates_uniqueness_of :completion_date, scope: :chef
 
   validate :correct_dates
 
