@@ -17,6 +17,11 @@
           <p>
             <%= menu_item.description %>
           </p>
+          <p>
+            <% menu_item.categories.each do |category| %>
+              <%= content_tag(:span, category.name, class: "label label-warning category-label") %>
+            <% end %>
+          </p>
         </div>
         <div class="col-md-2 col-xs-4 pull-right">
           <%= m.input :quantity, input_html: { class: 'input-medium' } %>
