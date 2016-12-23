@@ -14,7 +14,7 @@ class Customer::OrdersController < ApplicationController
     if @order.save
       flash[:success] = 'Order placed!'
       Order.delay.send_receipt(@order.id)
-      Order.dalay.send_order_to_chef(@order.id)
+      Order.delay.send_order_to_chef(@order.id)
       redirect_to @order
     else
       flash.now[:danger] = 'Unable to place order!'
