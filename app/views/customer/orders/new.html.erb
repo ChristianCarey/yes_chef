@@ -1,4 +1,4 @@
-<h1>Place a New Order</h1>
+<% content_for :title, "Place a New Order" %>
 <h3 class="text-danger">All orders are final.</h3>
  <!-- if you must edit or cancel please contact your chef LINKTO mailer -->
 <%= render partial: 'order_form', locals: {order: @order, oi: @oi} %>

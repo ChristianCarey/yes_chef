@@ -1,4 +1,4 @@
-<h2>All about <%= @profile.first_name %></h1>
+<% content_for :title, "All about #{@profile.first_name}" %>
 
 <h4>Name:</h4>
 <%= "#{@profile.first_name} #{@profile.last_name}" %></li>

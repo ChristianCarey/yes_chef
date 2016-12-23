@@ -1,6 +1,0 @@
-<%= simple_form_for @menu do |f| %>
-  <%= f.input :order_deadline %>
-  <%= f.input :completion_date %>
-  <%= f.association :menu_items, label_method: :name, value_method: :id, collection: current_user.menu_items %>
-  <%= f.button :submit %>
-<% end %>
