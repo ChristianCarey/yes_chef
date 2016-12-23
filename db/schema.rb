@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20161223055327) do
   end
 
   create_table "menu_items", force: :cascade do |t|
-<<<<<<< HEAD
     t.string   "name",               null: false
     t.text     "description",        null: false
     t.integer  "user_id"
@@ -78,15 +77,7 @@ ActiveRecord::Schema.define(version: 20161223055327) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "url"
-=======
-    t.string   "name",                          null: false
-    t.text     "description",                   null: false
-    t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "price_cents",                   null: false
     t.integer  "order_items_count", default: 0
->>>>>>> chef_stats
     t.index ["name", "user_id"], name: "index_menu_items_on_name_and_user_id", using: :btree
     t.index ["user_id", "name"], name: "index_menu_items_on_user_id_and_name", using: :btree
     t.index ["user_id"], name: "index_menu_items_on_user_id", using: :btree
