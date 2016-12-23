@@ -16,6 +16,7 @@ gem 'faker'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'simple_form'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+gem 'chartkick', '~> 1.4', '>= 1.4.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri

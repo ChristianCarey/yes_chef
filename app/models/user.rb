@@ -7,8 +7,7 @@ class User < ApplicationRecord
 
   has_many :ingredients, dependent: :destroy
 
-  has_many :received_orders, class_name: 'Order', foreign_key: :chef_id
-  has_many :placed_orders, class_name: 'Order', foreign_key: :customer_id
+  has_many :placed_orders, class_name: 'Order', foreign_key: :customer_id, dependent: :nullify
 
   has_many :order_items, through: :placed_orders
   has_many :customers, class_name: "User", foreign_key: :chef_id
@@ -26,6 +25,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def top_ten_customers
+    if chef?
+      customers.order(placed_orders_count: :desc).limit(10)
+    end
+  end
+
+  def top_ten_menu_items
+    if chef?
+      menu_items.order(order_items_count: :desc).limit(10)
+    end
+  end
+
+  def name
+    profile.name
+  end
+
   private
     def correct_role
       unless ["chef", "customer"].include?(role)
@@ -37,7 +52,7 @@ class User < ApplicationRecord
       self.create_profile(first_name: first_name, last_name: last_name)
     end
 
-    def method_missing(*args)
-      profile.send(*args)
+    def chef?
+      role == "chef"
     end
 end

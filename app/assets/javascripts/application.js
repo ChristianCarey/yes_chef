@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require highcharts
+//= require chartkick
 //= require bootstrap
 //= require_tree .
 function highlightAllOnMouseover(className){
