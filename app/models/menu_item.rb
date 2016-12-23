@@ -1,6 +1,6 @@
 class MenuItem < ApplicationRecord
   before_save :file_or_url
-  after_create :set_job
+  after_save :set_job
 
   has_many :menu_selections, dependent: :destroy
   has_many :menus, through: :menu_selections
@@ -14,9 +14,9 @@ class MenuItem < ApplicationRecord
   has_many :order_items, dependent: :nullify
   has_many :orders, through: :order_items
 
-  has_attached_file :image, styles: {large: '500x500>', medium: '300x300>', thumb: "100x100>"}
+  has_attached_file :image, styles: {large: '500x500>', medium: '300x300>', thumb: "100x100>"}, default_url: "loading.svg"
   validates_attachment_content_type :image, content_type: /\Aimage.*\Z/
-  process_in_background :image
+  process_in_background :image, processing_image_url: "loading.svg"
   before_post_process :randomize_file_name
 
   belongs_to :chef, class_name: "User", foreign_key: :user_id
@@ -28,7 +28,6 @@ class MenuItem < ApplicationRecord
   accepts_nested_attributes_for :categories, reject_if: :all_blank
 
   def price=(price)
-    p price
     self.price_cents = (price.to_f * 100)
   end
 
@@ -37,6 +36,7 @@ class MenuItem < ApplicationRecord
   end
 
   def process_img
+    p "procesing"
     PullTempfile.transaction(url: self.url, original_filename: "#{SecureRandom.hex}-#{File.basename(URI.parse(self.url).path).downcase}") do |tmp_image|
       self.image = tmp_image
       self.url = nil
@@ -47,7 +47,7 @@ class MenuItem < ApplicationRecord
       end
     end
   end
-  
+
   private
     def randomize_file_name
       unless url && url != ""

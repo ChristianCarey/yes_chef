@@ -1,17 +1,25 @@
-<h4>All z</h4>
-<table class="table table-striped">
-<tr>
-  <th>
-    Name
-  </th>
-  <th>
-    Total Orders Placed
-  </th>
-</tr>
+<h4>All Customers</h4>
+<table class="table table-striped table-hover table-bordered">
+<thead class='thead-default'>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Email
+    </th>
+    <th>
+      Total Orders Placed
+    </th>
+  </tr>
+</thead>
   <% customers.each do |customer| %>
   <tr>
     <td>
       <%= customer.name %>
+    </td>
+    <td>
+      <%= customer.email %>
     </td>
     <td>
       <%= customer.placed_orders_count %>

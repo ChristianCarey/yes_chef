@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id]) || current_user
     @profile = @user.profile
     unless @profile
       redirect_to new_user_profile_path(@user)

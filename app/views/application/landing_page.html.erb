@@ -13,6 +13,7 @@
     <h3 class='text-center'>Before we get started, are you a chef or a customer?</h3>
   </div>
 </div>
+<hr>
 
 <div class="row">
   <div class="col-md-6 jumbotron">
@@ -21,8 +22,8 @@
     </div>
   </div>
 
-  <div class="col-md-6">
-    <div class="customer_signup jumbotron">
+  <div class="col-md-6 jumbotron">
+    <div class="customer_signup">
       <%= link_to 'I\'m a Customer!', new_user_registration_path(role: 'customer'), class: "btn btn-block btn-lg btn-success" %>
     </div>
   </div>
