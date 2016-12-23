@@ -14,6 +14,10 @@ class OrderItem < ApplicationRecord
     self.quantity * self.menu_item.price_cents
   end
 
+  def unit_price
+    menu_item.price_cents
+  end
+
   private
     def set_calculated_fields
       set_item_name

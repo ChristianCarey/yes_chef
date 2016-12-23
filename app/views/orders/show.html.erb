@@ -1,19 +1,19 @@
 <% content_for :title, "Order Details" %>
 <% present @order do |order_presenter| %>
 
-<!-- <p>
-  <strong>Your order will be ready on: </strong>
-  <%#= order_presenter.completion_date %>
-</p> -->
+<p>
+  <strong>Order placed on:</strong> <%= @order.created_at.strftime("%A, %b %d")%> 
+</p>
 
 <%= order_presenter.table_lead_in %>
 
 <table class='table table-striped table-bordered'>
   <%= order_presenter.order_table_header %>
   <tbody>
-    <%= order_presenter.order_table_items %>
+
+    <%= render @order.order_items %>
       <tr>
-        <td></td>
+        <td colspan=2></td>
         <td><strong>Total price:</strong></td>
         <td>
           <%= format_currency(@order.total) %>
