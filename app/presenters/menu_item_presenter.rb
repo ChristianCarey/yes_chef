@@ -11,15 +11,15 @@ class MenuItemPresenter < BasePresenter
   def categories
     # TODO this could be a problem if the chef tags with tons of categories
     menu_item.categories.map do |category|
-      content_tag :span, category.name, class: "label label-warning category-label"
+      link_to content_tag(:span, category.name, class: "label label-warning category-label"), category
     end.join.html_safe
   end
-  
-  
+
+
 
 
   private
-  
+
   def menu_item
     @object
   end
