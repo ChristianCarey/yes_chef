@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources   :menu_items
+  resources :menu_items
+  resources :ingredients
 
   resources   :orders, only: [:index, :show]
 
+  get '/send_invite' => 'users#send_invite'
 
   authenticated :user do
     root 'users#current_user_home', as: :authenticated_root

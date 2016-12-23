@@ -21,9 +21,14 @@ class ApplicationController < ActionController::Base
   end
 
   def chef?
-    current_user.role == 'chef'
+    user_signed_in? ? current_user.role == 'chef' : false
   end
   helper_method :chef?
 
-
+  def require_chef
+    unless chef?
+      flash[:error] = "Only a chef can do that."
+      redirect_to :root
+    end
+  end
 end

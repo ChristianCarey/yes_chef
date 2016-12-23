@@ -26,6 +26,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def self.send_invite(chef, email, name)
+    UserMailer.invite(chef.id, email, name).deliver_later
+  end
+
   private
     def correct_role
       unless ["chef", "customer"].include?(role)
@@ -34,7 +38,7 @@ class User < ApplicationRecord
     end
 
     def set_names
-      self.create_profile(first_name: first_name, last_name: last_name)
+      self.create_profile(first_name: first_name.capitalize, last_name: last_name.capitalize)
     end
 
     def method_missing(*args)
