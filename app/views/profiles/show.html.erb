@@ -1,13 +1,13 @@
-<% content_for :title, "All about #{@profile.first_name}" %>
+<% content_for :title, "All About: #{@profile.first_name} #{@profile.last_name}" %>
 
 <h4>Name:</h4>
-<%= "#{@profile.first_name} #{@profile.last_name}" %></li>
+<p class="profile-info"><%= "#{@profile.first_name} #{@profile.last_name}" %></p>
 <h4>Email:</h4>
-<%= @profile.user.email %>
+<p class="profile-info"><%= @profile.user.email %></p>
 <h4>Telephone:</h4>
-<%= @profile.telephone || "Not available" %>
+<p class="profile-info"><%= @profile.telephone || "Not available" %></p>
 <h4>Address:</h4>
-<%= @profile.address || "Not available" %>
+<p class="profile-info"><%= @profile.address || "Not available" %></p>
 
 <br>
 <% if current_user == @user %>
