@@ -9,7 +9,7 @@ module RegistrationsHelper
 
   def welcome_tagline(role)
     if role == 'chef'
-      "May your clients ever be hungry"
+      "May your clients ever be satisfied"
     else
       "You clearly have a finer taste in life"
     end
