@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Yes, Chef!</title>
+    <title>Yes, Chef! | <% if content_for :title %><%= yield(:title) %><% else %>Ordering Made Better<% end %></title>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
 
@@ -12,6 +12,14 @@
   <body>
     <main class="container">
       <%= render partial: 'shared/navbar' %>
+      <% if content_for :title %>
+        <div class="row">
+          <div class="col-sm-10 pull-right">
+            <h2><%= yield(:title) %></h2>
+            <hr>
+          </div>
+        </div>
+      <% end %>
       <div class="row">
         <% if signed_in? && current_user.role == 'chef' %>
           <%= render partial: 'shared/chef_nav' %>

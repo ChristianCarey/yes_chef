@@ -11,7 +11,7 @@ class MenuItemPresenter < BasePresenter
   def categories
     # TODO this could be a problem if the chef tags with tons of categories
     menu_item.categories.map do |category|
-      content_tag :span, category.name, class: "label label-warning category-label"
+      content_tag :span, category.name, class: "label label-warning category-label pull-right"
     end.join.html_safe
   end
 
@@ -31,10 +31,10 @@ class MenuItemPresenter < BasePresenter
     if current_chef?(menu_item)
       content_tag :h5, "You have sold #{pluralize(menu_item.order_items_count, "serving")} of this item."
     end
-  end  
+  end
 
   private
-  
+
   def menu_item
     @object
   end

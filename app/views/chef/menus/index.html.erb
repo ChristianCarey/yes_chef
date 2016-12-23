@@ -1,5 +1,4 @@
-<h4>Select an empty day to make a new menu.</h4>
-<hr>
+<% content_for :title, "Menu Calendar" %>
 <div id="menus">
   <h2 id="month">
     <%= link_to "<", date: @date.prev_month %>
@@ -21,6 +20,7 @@
     <% end %>
   <% end %>
 </div>
+<h4 class="text-right">Select an empty day to make a new menu.</h4>
 
 <script>
   $('.eventless').parent().on('click touchstart', function(){
