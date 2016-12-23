@@ -1,0 +1,21 @@
+<h4>Your Top Customers</h4>
+<table class="table table-striped">
+<tr>
+  <th>
+    Name
+  </th>
+  <th>
+    Total Orders Placed
+  </th>
+</tr>
+  <% customers.each do |customer| %>
+  <tr>
+    <td>
+      <%= customer.name %>
+    </td>
+    <td>
+      <%= customer.placed_orders_count %>
+    </td>
+  </tr>
+  <% end %>
+</table>

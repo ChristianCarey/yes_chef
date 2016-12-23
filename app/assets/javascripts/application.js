@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require turbolinks
+//= require highcharts
+//= require chartkick
 //= require bootstrap
 //= require_tree .
 function highlightAllOnMouseover(className){

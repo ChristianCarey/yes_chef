@@ -1,28 +1,38 @@
 <div class="row">
-<div class="col-md-6">
-  <h4>Invite Customer</h4>
-  <hr>
-  <%= form_tag send_invite_path, method: "GET", class: "form-inline" do |f| %>
-  <div class="form-group">
-    <%= label_tag :name %>
-    <%= text_field_tag :name, nil, placeholder: "customer name (optional)", class: "form-control" %>
+  <div class="col-md-12">
+    <%= form_tag nil, class: "form-inline"  do |f| %>
+      <div class="form-group">
+        <%= label_tag :name, "Find more customers" %>
+        <%= text_field_tag :name, nil, placeholder: "customer email", class: "form-control" %>
+      </div>
+      <%= submit_tag "Send Invite", class: 'btn btn-primary' %>
+    <% end %>
+    <hr>
   </div>
-  <div class="form-group">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, nil, placeholder: "customer email", class: "form-control" %>
+  <div class="col-md-6">
+    <%= render partial: "top_customers_table", locals: { customers: @top_ten_customers } %>
   </div>
-  <div class="form-group">
-    <%= submit_tag "Send Invite", class: 'btn btn-primary' %>
+  <div class="col-md-6">
+    <h4>Your most popular menu items</h4>
+    <table class="table table-striped">
+      <tr>
+        <th>
+          Item Name
+        </th>
+        <th>
+          Total Quantity Sold
+        </th>
+      </tr> 
+      <% @top_ten_menu_items.each do |menu_item| %>
+        <tr>
+          <td>
+            <%= menu_item.name %>
+          </td>
+          <td>
+            <%= menu_item.order_items_count %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
-<% end %>
-<hr>
-<h4>Your Customers</h4>
-  <table class="table table-striped">
-  <tr>
-    <th>
-      Name
-    </th>
-  </tr>
-    <%= render partial: 'customer', collection: @customers , as: :customer %>
-  </table>
 </div>
