@@ -8,7 +8,7 @@ class OrderItem < ApplicationRecord
   validates_uniqueness_of :menu_item, scope: :order
 
   before_create :set_calculated_fields
-  after_create :increment_menu_item_counter
+  before_create :increment_menu_item_counter
 
   private
     def set_calculated_fields
@@ -26,5 +26,6 @@ class OrderItem < ApplicationRecord
 
     def increment_menu_item_counter
       menu_item.order_items_count += quantity
+      menu_item.save
     end
 end
