@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161223055327) do
 
   # These are extensions that must be enabled in order to support this database
@@ -124,7 +125,7 @@ ActiveRecord::Schema.define(version: 20161223055327) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "menu_id"
-    t.integer  "customer_id", null: false
+    t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["menu_id", "customer_id"], name: "index_orders_on_menu_id_and_customer_id", using: :btree
