@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :menu, counter_cache: true
-  belongs_to :customer, class_name: 'User', foreign_key: :customer_id, 
+  belongs_to :customer, class_name: 'User', foreign_key: :customer_id,
              counter_cache: :placed_orders_count, optional: true
 
   has_many :order_items, inverse_of: :order, dependent: :destroy
@@ -23,8 +23,8 @@ class Order < ApplicationRecord
   end
 
   def self.send_receipt(order_id)
-    OrderMailer.receipt(find(order_id)).deliver_layer
-    OrderMailer.order_to_chef(find(order_id)).deliver_layer
+    OrderMailer.receipt(find(order_id)).deliver_later
+    OrderMailer.order_to_chef(find(order_id)).deliver_later
   end
 
 end
