@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <div class="panel panel-default menu-item-partial">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= menu_item.name %></h3>
+          <h3 class="panel-title"><%= link_to menu_item.name, menu_item %></h3>
           <%= menu_item_presenter.categories %>
         </div>
         <div class="panel-body">

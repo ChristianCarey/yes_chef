@@ -15,8 +15,11 @@ class MenuItemPresenter < BasePresenter
     end.join.html_safe
   end
   
-  
-
+  def menu_item_orders_count
+    if current_chef?(menu_item)
+      content_tag :h5, "You have sold #{pluralize(menu_item.order_items_count, "serving")} of this item."
+    end
+  end  
 
   private
   
