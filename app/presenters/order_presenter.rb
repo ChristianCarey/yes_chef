@@ -17,7 +17,7 @@ class OrderPresenter < BasePresenter
   end
 
   def order_table_header
-    columns = %w(Item Quantity Price)
+    columns = %w(Item Unit\ Price Quantity Total)
     content_tag :thead do
      content_tag :tr do
       columns.collect { |column|  concat content_tag(:th,column) }.join().html_safe
@@ -32,6 +32,7 @@ class OrderPresenter < BasePresenter
           content_tag(:strong, item.menu_item.name)
           .concat(content_tag :p, item.menu_item.description)
         end
+        .concat(content_tag :td, item.menu_item.price)
         .concat(content_tag :td, item.quantity)
         .concat(content_tag(:td, format_currency(item.menu_item_total_price)))
       end
