@@ -1,3 +1,7 @@
-<li>
-  <%= link_to order.customer.email, order_path(order) %> | <%= format_currency(order.total) %>
-</li>
+<tr>
+  <td><%= stringify_date(order.created_at) %></td>
+  <td><%= order.customer.name %></td>
+  <td><%= stringify_date(order.menu.completion_date) %></td>
+  <td><%= format_currency(order.total) %></td>
+  <td><%= link_to "Review", order_path(order) %></td>
+</tr>
