@@ -21,6 +21,7 @@ class Chef::MenusController < ApplicationController
     date = params[:selected_date]
     unless date && Date.parse(date) > Date.today
       date = 1.week.from_now
+      flash.now[:danger] = "Cannot create a menu for a past date, note that the menu by default starts to do with completion date in a week."
     end
     @menu = Menu.new(completion_date: date )
     @menu.menu_selections.build
