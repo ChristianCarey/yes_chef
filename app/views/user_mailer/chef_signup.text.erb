@@ -1,0 +1,14 @@
+G'day <%= @name %>!</p>
+
+
+Your personal chef, <%= @chef.name %> has invited you to use their automated ordering system at Yes, Chef!
+
+By signing up for this system, you can view upcoming menus, track your order history, and more absolutely free!
+
+
+
+To get started with Yes, Chef! visit: <%= link_to "Click Here", new_user_registration_url(role: 'customer', chef: @chef.id) %>
+
+
+
+Have a delicious day!

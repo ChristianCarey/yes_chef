@@ -1,0 +1,26 @@
+<tr>
+  <td width="600" valign="top">
+    <p>G'day <%= @name %>!</p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      Your personal chef, <%= @chef.name %> has invited you to use their automated ordering system at Yes, Chef! By signing up for this system, you can view upcoming menus, track your order history, and more absolutely free!
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      To get started with Yes, Chef! <%= link_to "Click Here", new_user_registration_url(role: 'customer', chef: @chef.id) %>.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="600" valign="top">
+    <p>
+      Have a delicious day!
+    </p>
+  </td>
+</tr>
