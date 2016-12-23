@@ -14,7 +14,7 @@ class MenuItem < ApplicationRecord
   has_many :order_items, dependent: :nullify
   has_many :orders, through: :order_items
 
-  has_attached_file :image, styles: {large: '500x500>', medium: '300x300>', thumb: "100x100>"}
+  has_attached_file :image, styles: {large: '500x500>', medium: '300x300>', thumb: "100x100>"}, default_url: "loading.svg"
   validates_attachment_content_type :image, content_type: /\Aimage.*\Z/
   process_in_background :image, processing_image_url: "loading.svg"
   before_post_process :randomize_file_name
