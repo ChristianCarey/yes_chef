@@ -21,4 +21,7 @@
       </tr>
   </tbody>
 </table>
+  <% if chef?%>
+    <%= link_to "Visit customer's page.", user_profile_path(@order.customer_id) %>
+  <% end %>
 <% end %><!-- order presenter -->

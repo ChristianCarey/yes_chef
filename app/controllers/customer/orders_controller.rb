@@ -16,24 +16,10 @@ class Customer::OrdersController < ApplicationController
       Order.send_receipt(@order.id)
       redirect_to @order
     else
-      flash.now[:danger] = 'Unable to place order!'
-      render :new
+      flash[:danger] = 'Unable to place order!'
+      redirect_to new_customer_menu_order_path
     end
   end
-
-  # def edit
-  #   @oi = @order.order_items
-  # end
-  #
-  # def update
-  #
-  #   # orders that are sitll active (before certain date)
-  # end
-  #
-  # def destroy
-  #   # orders that are still active only
-  #   # add a fulfilled_date col to Order?
-  # end
 
   private
 
