@@ -22,6 +22,6 @@ class Order < ApplicationRecord
   end
 
   def self.send_receipt(order_id)
-    OrderMailer.receipt(find(order_id)).deliver!
+    OrderMailer.receipt(find(order_id)).deliver_later
   end
 end
