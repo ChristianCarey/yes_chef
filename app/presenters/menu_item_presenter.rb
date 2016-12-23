@@ -21,11 +21,17 @@ class MenuItemPresenter < BasePresenter
 
   def panel_body_image
     if @template.action_name == 'index'
-      image_tag menu_item.image.url(:medium)
+      image_tag menu_item.image.url(:thumb)
+    elsif  @template.action_name == 'show'
+      image_tag menu_item.image.url(:large)
     end
   end 
-  
 
+  def menu_item_orders_count
+    if current_chef?(menu_item)
+      content_tag :h5, "You have sold #{pluralize(menu_item.order_items_count, "serving")} of this item."
+    end
+  end  
 
   private
   
