@@ -46,7 +46,7 @@ end
 
 puts "Creating ingredients..."
 10.times do 
-  Ingredient.create(user: User.where(role: "chef").first,
+  Ingredient.create(chef: User.where(role: "chef").first,
                     name: Faker::Hipster.word)
 end
 

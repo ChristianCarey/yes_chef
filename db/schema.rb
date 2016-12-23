@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20161223061709) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "menu_id"
-    t.integer  "customer_id", null: false
+    t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["menu_id", "customer_id"], name: "index_orders_on_menu_id_and_customer_id", using: :btree

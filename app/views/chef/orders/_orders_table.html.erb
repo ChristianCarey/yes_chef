@@ -1,0 +1,32 @@
+<h4>All Orders</h4>
+<table class="table table-striped">
+<tr>
+  <th>
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Menu
+  </th>
+  <th>
+    Total
+  </th>
+</tr>
+  <% orders.each do |order| %>
+  <tr>
+    <td>
+      <%= link_to "Review", order_path(order) %>
+    </td>
+    <td>
+      <%= link_to order.customer.name, user_orders_path(order.customer) %>
+    </td>
+    <td>
+      <%= link_to "Menu", chef_menu_path(order.menu) %>
+    </td>
+    <td>
+      <%= format_currency(order.total) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
