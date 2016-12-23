@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :chef do
     resources :menus
+    resource :customers
+    resource :orders
   end
 
   namespace :customer do
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   resources :menu_items
   resources :ingredients
 
-  resources   :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show]
 
   get '/send_invite' => 'users#send_invite'
 

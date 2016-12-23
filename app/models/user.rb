@@ -3,6 +3,8 @@ class User < ApplicationRecord
   attr_accessor :first_name, :last_name
 
   has_many :menus, dependent: :destroy
+  has_many :recieved_orders, through: :menus, source: :orders
+
   has_many :menu_items, dependent: :destroy
 
   has_many :ingredients, dependent: :destroy
@@ -43,7 +45,11 @@ class User < ApplicationRecord
   end
 
   def name
-    profile.name
+    if profile
+      profile.name
+    else
+      email
+    end
   end
 
   private
