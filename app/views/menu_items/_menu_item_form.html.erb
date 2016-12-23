@@ -1,4 +1,4 @@
-<%= simple_form_for menu_item do |f| %>
+<%= simple_form_for menu_item, html: { class: 'syncronousUpload' } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <h4> Ingredients </h4>
@@ -13,5 +13,6 @@
   <%= f.simple_fields_for :categories, menu_item.categories.build do |fi| %>
     <%= fi.input :name %>
   <% end %>
+  <%= render partial: 'img_upload_form', locals:{form: f} %>
   <%= f.submit %>
 <% end %>

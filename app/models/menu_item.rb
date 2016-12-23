@@ -1,4 +1,7 @@
 class MenuItem < ApplicationRecord
+  before_save :file_or_url
+  after_create :set_job
+
   has_many :menu_selections, dependent: :destroy
   has_many :menus, through: :menu_selections
 
@@ -10,6 +13,11 @@ class MenuItem < ApplicationRecord
 
   has_many :order_items, dependent: :nullify
   has_many :orders, through: :order_items
+
+  has_attached_file :image, styles: {large: '500x500>', medium: '300x300>', thumb: "100x100>"}
+  validates_attachment_content_type :image, content_type: /\Aimage.*\Z/
+  process_in_background :image
+  before_post_process :randomize_file_name
 
   belongs_to :chef, class_name: "User", foreign_key: :user_id
 
@@ -27,4 +35,37 @@ class MenuItem < ApplicationRecord
   def price
     (self.price_cents || 0).to_f / 100
   end
+
+  def process_img
+    PullTempfile.transaction(url: self.url, original_filename: "#{SecureRandom.hex}-#{File.basename(URI.parse(self.url).path).downcase}") do |tmp_image|
+      self.image = tmp_image
+      self.url = nil
+      unless save
+        messages = self.errors.full_messages.select {|e| e !~ /Paperclip/}
+        messages << "Make sure you are using a web-safe image."
+        self.destroy
+      end
+    end
+  end
+  
+  private
+    def randomize_file_name
+      unless url && url != ""
+        extension = File.extname(image_file_name).downcase
+        self.image.instance_write(:file_name, "#{SecureRandom.hex}-#{image_file_name.downcase}")
+      end
+    end
+
+    def file_or_url
+      url = nil if url == ""
+      image_file_name = File.basename(URI.parse(self.url).path) if url
+      image = nil if url
+    end
+
+    def set_job
+      if self.url && self.url != ""
+        ProcessImageJob.perform_later self.id
+      end
+    end
+
 end

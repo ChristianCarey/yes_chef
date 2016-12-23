@@ -1,2 +1,4 @@
 
 <%= render partial: 'menu_item', locals: { menu_item: @menu_item } %>
+
+<%= image_tag @menu_item.image.url(:original) %>

@@ -7,15 +7,25 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
+gem 'jquery-fileupload-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'rails_12factor'
 gem 'devise', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'faker'
-gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+# gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+
 gem 'simple_form'
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'daemons'
+
+gem 'figaro'
+gem 'aws-sdk'
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+gem "delayed_paperclip"
+gem 'pull_tempfile'
 
 group :development, :test do
   gem 'byebug', platform: :mri

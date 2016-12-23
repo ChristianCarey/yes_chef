@@ -15,6 +15,7 @@ class UserMailer < ApplicationMailer
   end
 
   def invite(chef_id, email, name = nil)
+    @title= "You've Been Invited to Yes, Chef!"
     @chef = User.find_by(id: chef_id, role: 'chef')
     @name = name
     mail(to: email, subject: "Your chef has invited you to join us!")

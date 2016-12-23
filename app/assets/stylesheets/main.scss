@@ -23,3 +23,44 @@ a.full-size {
   width: 100%;
   height:100%;
 }
+
+.progress {
+  .bar {
+    padding-left: 0.2em;
+    color:   white;
+    display: none;
+  }
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.image-upload-section{
+  margin-top: -50px;
+  margin-bottom: 50px;
+}
+
+.bordered{
+  border: 2px solid #333;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.spaced {
+  margin-top: 20px;
+  margin-bottom: 20px
+}
+
+img {
+  max-width: 100%;
+}
