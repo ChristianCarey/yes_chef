@@ -8,7 +8,7 @@ class OrderItem < ApplicationRecord
   validates_uniqueness_of :menu_item, scope: :order
 
   before_create :calculate_sale_price
-
+  
   private
 
     def calculate_sale_price
