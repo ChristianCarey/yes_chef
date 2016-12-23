@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   def chef?
     current_user.role == 'chef'
   end
+  helper_method :chef?
 
 
 end
