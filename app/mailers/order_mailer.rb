@@ -2,6 +2,7 @@ class OrderMailer < ApplicationMailer
   default from: "backofhouse@yeschef.com"
 
   def receipt(order)
+    @title = "New Order Placed"
     @order = order
     @customer = @order.customer
     @chef = @customer.chef
@@ -9,6 +10,7 @@ class OrderMailer < ApplicationMailer
   end
 
   def order_to_chef(order)
+    @title = "New Order Placed"
     @order = order
     @customer = order.customer
     @chef = @customer.chef
