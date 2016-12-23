@@ -36,4 +36,8 @@ class User < ApplicationRecord
     def set_names
       self.create_profile(first_name: first_name, last_name: last_name)
     end
+
+    def method_missing(*args)
+      profile.send(*args)
+    end
 end
