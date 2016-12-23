@@ -7,9 +7,17 @@ class OrderItem < ApplicationRecord
 
   validates_uniqueness_of :menu_item, scope: :order
 
-  before_create :calculate_sale_price
+  before_create :set_calculated_fields
 
   private
+    def set_calculated_fields
+      set_item_name
+      calculate_sale_price
+    end
+
+    def set_item_name
+      self.item_name = menu_item.name
+    end
 
     def calculate_sale_price
       self.sale_price_cents = menu_item.price_cents

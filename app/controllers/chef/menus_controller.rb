@@ -30,7 +30,7 @@ class Chef::MenusController < ApplicationController
     @menu = current_user.menus.build(whitelist)
     if @menu.save
       flash[:success] = "Menu and items saved."
-      redirect_to @menu
+      redirect_to chef_menu_path(@menu)
     else
       flash.now[:danger] = "Could not save menu."
       render :new
@@ -44,7 +44,7 @@ class Chef::MenusController < ApplicationController
   def update
     if @menu.update(whitelist)
       flash[:success] = "Menu updated."
-      redirect_to @menu
+      redirect_to chef_menu_path(@menu)
     else
       flash.now[:danger] = "No changes were made."
       render :edit
@@ -53,7 +53,7 @@ class Chef::MenusController < ApplicationController
 
   def destroy
     if @menu.destroy
-      flash[:succes] = "Menu deleted."
+      flash[:success] = "Menu deleted."
       redirect_to chef_menus_path
     else
       flash.now[:danger] = "Unable to delete menu."
