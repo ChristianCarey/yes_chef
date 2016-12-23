@@ -9,6 +9,8 @@ class Menu < ApplicationRecord
 
   validates_presence_of :order_deadline, :completion_date
 
+  validates_uniqueness_of :completion_date, scope: :chef
+
   validate :correct_dates
 
   private
