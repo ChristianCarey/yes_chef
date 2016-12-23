@@ -1,0 +1,15 @@
+<h1>All about <%= @profile.first_name %></h1>
+
+<h3>Name:</h3>
+<%= "#{@profile.first_name} #{@profile.last_name}" %></li>
+<h3>Email:</h3>
+<%= @profile.user.email %>
+<h3>Telephone:</h3>
+<%= @profile.telephone %>
+<h3>Address:</h3>
+<%= @profile.address %>
+
+<br>
+<% if current_user == @user %>
+  <%= link_to 'Edit your profile', edit_user_profile_path(current_user) %>
+<% end %>

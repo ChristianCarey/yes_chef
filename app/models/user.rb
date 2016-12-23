@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :order_items, through: :placed_orders
   has_many :customers, class_name: "User", foreign_key: :chef_id
 
+  has_one :profile, dependent: :destroy
+
   belongs_to :chef, class_name: "User", optional: true, foreign_key: :chef_id
 
   validate :correct_role

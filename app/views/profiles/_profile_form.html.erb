@@ -1,0 +1,8 @@
+<%= simple_form_for [current_user, @profile], url: user_profile_path(current_user) do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :telephone %>
+    <%= f.input :address %>
+    <%= f.submit %>
+<% end %>
+  

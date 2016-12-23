@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for  :users, :controllers => { registrations: 'registrations' }
 
+
   namespace :chef do
     resources :menus
   end
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources   :users do
+    resource :profile
     resources :orders
   end
 
