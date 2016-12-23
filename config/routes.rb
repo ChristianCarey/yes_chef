@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get '/send_invite' => 'users#send_invite'
 
   authenticated :user do
-    root 'profiles#show', as: :authenticated_root
+    root 'menus#index', as: :authenticated_root
   end
   root to: 'application#landing_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

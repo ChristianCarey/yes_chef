@@ -13,7 +13,7 @@
             <%= f.label :first_name, "First Name" %><br />
             <%= f.text_field :first_name,  class: "form-control", required: true %>
           </div>
-          
+
           <div class="field form-group col-md-6">
             <%= f.label :last_name, "Last Name" %><br />
             <%= f.text_field :last_name, class: "form-control", required: true %>
@@ -44,7 +44,7 @@
           </div>
         <% end %>
 
-        <%= f.hidden_field :role, value: @role %>
+        <%= f.hidden_field :role, value: (@role || f.object.role) %>
 
         <div class="actions">
           <%= f.submit "Sign up", class: "form-control btn-primary btn" %>
