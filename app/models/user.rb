@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  attr_accessor :first_name, :last_name
+
   has_many :menus, dependent: :destroy
   has_many :menu_items, dependent: :destroy
 
@@ -17,6 +19,10 @@ class User < ApplicationRecord
 
   validate :correct_role
 
+  validates_presence_of :first_name, :last_name, on: [:create]
+
+  after_create :set_names
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -25,5 +31,9 @@ class User < ApplicationRecord
       unless ["chef", "customer"].include?(role)
         errors.add(:role, :invalid, message: "Don't try to hack our system")
       end
+    end
+
+    def set_names
+      self.create_profile(first_name: first_name, last_name: last_name)
     end
 end

@@ -137,10 +137,7 @@ ActiveRecord::Schema.define(version: 20161223003833) do
   add_foreign_key "ingredients_menu_items", "menu_items"
   add_foreign_key "menu_selections", "menu_items"
   add_foreign_key "menu_selections", "menus"
-<<<<<<< HEAD
-  add_foreign_key "profiles", "users"
-=======
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "orders"
->>>>>>> master
+  add_foreign_key "profiles", "users"
 end

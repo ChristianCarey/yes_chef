@@ -28,6 +28,16 @@
           <%= f.collection_select :chef_id, User.where(role: "chef"), :id, :email, {}, class: "form-control" %>
         </div>
 
+        <div class="field form-group">
+          <%= f.label :first_name, "Your First Name" %><br />
+          <%= f.text_field :first_name,  class: "form-control", required: true %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :last_name, "Your Last Name" %><br />
+          <%= f.text_field :last_name, class: "form-control", required: true %>
+        </div>
+
         <%= f.hidden_field :role, value: @role %>
 
         <div class="actions">
